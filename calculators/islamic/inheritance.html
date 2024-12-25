@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة المواريث - الآلات الحاسبة الشاملة</title>
+    <meta name="description" content="حاسبة المواريث - احسب المواريث الشرعية بدقة وفقاً لأحكام الشريعة الإسلامية">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/calculator.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .heirs-group {
+            border: 1px solid var(--bs-border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .heir-card {
+            background: var(--bs-light);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .share-result {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--bs-success);
+        }
+        .inheritance-tree {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bs-light);
+            border-radius: 8px;
+        }
+        .inheritance-tree .tree-node {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-right: 3px solid var(--bs-primary);
+        }
+        .dark-theme .heir-card,
+        .dark-theme .inheritance-tree {
+            background: var(--bs-dark);
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand site-logo" href="../../index.html">الآلات الحاسبة الشاملة</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../islamic.html">الحاسبات الإسلامية</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button id="theme-toggle" class="btn btn-link">
+                            <i class="bi bi-moon-fill theme-icon-dark fs-5"></i>
+                            <i class="bi bi-sun-fill theme-icon-light fs-5" style="display: none;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="calculator-container">
+            <h1 class="category-title">حاسبة المواريث</h1>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <form id="inheritanceForm">
+                        <!-- التركة -->
+                        <div class="estate-section mb-4">
+                            <h3 class="section-title">
+                                <i class="bi bi-cash-stack text-primary"></i>
+                                التركة والديون
+                            </h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">إجمالي التركة</label>
+                                    <div class="input-group">
+                                        <input type="number" 
+                                               class="form-control" 
+                                               id="totalEstate" 
+                                               min="0" 
+                                               step="0.01" 
+                                               required
+                                               placeholder="0.00">
+                                        <select class="form-select currency-select" id="estateCurrency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                        <button type="button" 
+                                                class="btn btn-outline-secondary" 
+                                                id="refresh-rates" 
+                                                title="تحديث أسعار العملات">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </div>
+                                    <small class="text-muted mt-1" id="rates-last-update"></small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">الديون والوصايا</label>
+                                    <div class="input-group">
+                                        <input type="number" 
+                                               class="form-control" 
+                                               id="debts" 
+                                               min="0" 
+                                               step="0.01"
+                                               placeholder="0.00">
+                                        <select class="form-select currency-select" data-sync="estateCurrency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الورثة -->
+                        <div class="heirs-section mb-4">
+                            <h3 class="section-title">
+                                <i class="bi bi-people-fill text-primary"></i>
+                                الورثة
+                            </h3>
+
+                            <!-- الزوجية -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="bi bi-heart text-danger"></i>
+                                        الزوجية
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="spouse" id="noSpouse" value="none" checked>
+                                        <label class="btn btn-outline-secondary" for="noSpouse">
+                                            <i class="bi bi-x-circle"></i>
+                                            لا يوجد
+                                        </label>
+                                        
+                                        <input type="radio" class="btn-check" name="spouse" id="husband" value="husband">
+                                        <label class="btn btn-outline-secondary" for="husband">
+                                            <i class="bi bi-person"></i>
+                                            زوج
+                                        </label>
+                                        
+                                        <input type="radio" class="btn-check" name="spouse" id="wife" value="wife">
+                                        <label class="btn btn-outline-secondary" for="wife">
+                                            <i class="bi bi-person-heart"></i>
+                                            زوجة
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الأبناء -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="bi bi-people text-success"></i>
+                                        الأبناء
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">عدد الذكور</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numSons" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">عدد الإناث</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numDaughters" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الوالدين -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="bi bi-people text-info"></i>
+                                        الوالدين
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="father">
+                                                <label class="form-check-label" for="father">
+                                                    <i class="bi bi-person"></i>
+                                                    الأب
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="mother">
+                                                <label class="form-check-label" for="mother">
+                                                    <i class="bi bi-person-heart"></i>
+                                                    الأم
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الإخوة والأخوات -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="bi bi-people text-warning"></i>
+                                        الإخوة والأخوات
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">الإخوة الأشقاء</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numFullBrothers" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">الأخوات الشقيقات</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numFullSisters" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">الإخوة لأب</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numPaternalBrothers" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">الأخوات لأب</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown()">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                                <input type="number" 
+                                                       class="form-control text-center" 
+                                                       id="numPaternalSisters" 
+                                                       min="0" 
+                                                       value="0"
+                                                       style="max-width: 100px;">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="this.previousElementSibling.stepUp()">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- زر الحساب -->
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="bi bi-calculator me-2"></i>
+                                    احسب المواريث
+                                </button>
+                            </div>
+                        </div>
+                        <!-- النتائج -->
+                        <div class="results-section mt-4" id="inheritanceResult" style="display: none;">
+                            <h3 class="section-title">
+                                <i class="bi bi-calculator text-primary"></i>
+                                نتائج التوزيع
+                            </h3>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="result-item mb-3">
+                                                <label class="fw-bold">صافي التركة:</label>
+                                                <span id="netEstate" class="result-value"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="result-item mb-3">
+                                                <label class="fw-bold">مجموع الأنصبة:</label>
+                                                <span id="totalShares" class="result-value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shares-table mt-3">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>الوارث</th>
+                                                    <th>النصيب</th>
+                                                    <th>المبلغ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sharesTableBody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inheritance-info mt-5">
+                            <h4>معلومات عن المواريث</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h6>الزوج</h6>
+                                    <p>يرث النصف إذا لم يكن للمتوفاة ولد، والربع إذا كان لها ولد</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6>الزوجة</h6>
+                                    <p>ترث الربع إذا لم يكن للمتوفى ولد، والثمن إذا كان له ولد</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6>الأولاد</h6>
+                                    <p>للذكر مثل حظ الأنثيين بعد أصحاب الفروض</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6>الأب</h6>
+                                    <p>يرث السدس مع وجود الولد، وله الباقي تعصيباً مع عدم وجود الولد</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6>الأم</h6>
+                                    <p>ترث السدس مع وجود الولد أو مع وجود عدد من الإخوة، والثلث في غير ذلك</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="loading-spinner"></div>
+                    <div class="result-box d-none" id="resultBox">
+                        <h3 class="text-center mb-4">نتيجة حساب المواريث</h3>
+                        
+                        <div class="inheritance-tree mb-4">
+                            <h5>شجرة الورثة</h5>
+                            <div id="heirsTree"></div>
+                        </div>
+
+                        <div class="shares-details">
+                            <h5>تفاصيل الأنصبة</h5>
+                            <div id="sharesDetails" class="list-group list-group-flush"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-light">
+        <div class="container">
+            <p class="mb-0">جميع الحقوق محفوظة 2024 الآلات الحاسبة الشاملة</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function formatCurrency(amount) {
+            const currency = document.getElementById('currency').value || 'SAR';
+            return new Intl.NumberFormat('ar-EG', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+
+        function updateCurrencySymbol() {
+            const currency = document.getElementById('currency').value;
+            const symbols = document.querySelectorAll('.currency-symbol');
+            symbols.forEach(symbol => {
+                symbol.textContent = currency;
+            });
+        }
+
+        document.getElementById('currency').addEventListener('change', updateCurrencySymbol);
+
+        class InheritanceCalculator {
+            constructor() {
+                this.shares = {
+                    husband: { withChildren: 1/4, withoutChildren: 1/2 },
+                    wife: { withChildren: 1/8, withoutChildren: 1/4 },
+                    father: { withChildren: 1/6 },
+                    mother: { withChildren: 1/6, withoutChildren: 1/3 }
+                };
+            }
+
+            calculateShares(estate, heirs) {
+                let shares = {};
+                let remainingShare = 1;
+                let hasChildren = heirs.numSons > 0 || heirs.numDaughters > 0;
+
+                // حساب نصيب الزوج/الزوجة
+                if (heirs.spouse === 'husband') {
+                    shares.husband = estate * (hasChildren ? this.shares.husband.withChildren : this.shares.husband.withoutChildren);
+                    remainingShare -= hasChildren ? this.shares.husband.withChildren : this.shares.husband.withoutChildren;
+                } else if (heirs.spouse === 'wife') {
+                    shares.wife = estate * (hasChildren ? this.shares.wife.withChildren : this.shares.wife.withoutChildren);
+                    remainingShare -= hasChildren ? this.shares.wife.withChildren : this.shares.wife.withoutChildren;
+                }
+
+                // حساب نصيب الوالدين
+                if (heirs.hasFather) {
+                    shares.father = estate * this.shares.father.withChildren;
+                    remainingShare -= this.shares.father.withChildren;
+                }
+
+                if (heirs.hasMother) {
+                    shares.mother = estate * (hasChildren ? this.shares.mother.withChildren : this.shares.mother.withoutChildren);
+                    remainingShare -= hasChildren ? this.shares.mother.withChildren : this.shares.mother.withoutChildren;
+                }
+
+                // حساب نصيب الأبناء
+                if (hasChildren) {
+                    let remainingAmount = estate * remainingShare;
+                    let totalShares = (heirs.numSons * 2) + heirs.numDaughters;
+                    let sharePerUnit = remainingAmount / totalShares;
+
+                    if (heirs.numSons > 0) {
+                        shares.sons = (sharePerUnit * 2) * heirs.numSons;
+                    }
+                    if (heirs.numDaughters > 0) {
+                        shares.daughters = sharePerUnit * heirs.numDaughters;
+                    }
+                }
+
+                return shares;
+            }
+        }
+
+        const calculator = new InheritanceCalculator();
+
+        document.getElementById('inheritanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateInheritance();
+        });
+
+        function calculateInheritance() {
+            // إظهار التحميل
+            document.querySelector('.loading-spinner').style.display = 'block';
+            document.getElementById('resultBox').classList.add('d-none');
+
+            // جمع البيانات
+            const estate = Number(document.getElementById('totalEstate').value);
+            const heirs = {
+                spouse: document.querySelector('input[name="spouse"]:checked').value,
+                numSons: Number(document.getElementById('numSons').value),
+                numDaughters: Number(document.getElementById('numDaughters').value),
+                hasFather: document.getElementById('father').checked,
+                hasMother: document.getElementById('mother').checked
+            };
+
+            // حساب الأنصبة
+            const shares = calculator.calculateShares(estate, heirs);
+
+            // محاكاة التحميل
+            setTimeout(() => {
+                // إخفاء التحميل
+                document.querySelector('.loading-spinner').style.display = 'none';
+                document.getElementById('resultBox').classList.remove('d-none');
+
+                // عرض شجرة الورثة
+                displayHeirsTree(heirs);
+
+                // عرض تفاصيل الأنصبة
+                displayShares(shares);
+            }, 500);
+        }
+
+        function displayHeirsTree(heirs) {
+            const treeElement = document.getElementById('heirsTree');
+            treeElement.innerHTML = '';
+
+            if (heirs.spouse !== 'none') {
+                treeElement.innerHTML += `<div class="tree-node">${heirs.spouse === 'husband' ? 'الزوج' : 'الزوجة'}</div>`;
+            }
+            if (heirs.hasFather) {
+                treeElement.innerHTML += `<div class="tree-node">الأب</div>`;
+            }
+            if (heirs.hasMother) {
+                treeElement.innerHTML += `<div class="tree-node">الأم</div>`;
+            }
+            if (heirs.numSons > 0) {
+                treeElement.innerHTML += `<div class="tree-node">الأبناء (${heirs.numSons})</div>`;
+            }
+            if (heirs.numDaughters > 0) {
+                treeElement.innerHTML += `<div class="tree-node">البنات (${heirs.numDaughters})</div>`;
+            }
+        }
+
+        function displayShares(shares) {
+            const detailsElement = document.getElementById('sharesDetails');
+            detailsElement.innerHTML = '';
+
+            for (let heir in shares) {
+                let heirName = {
+                    husband: 'الزوج',
+                    wife: 'الزوجة',
+                    father: 'الأب',
+                    mother: 'الأم',
+                    sons: 'الأبناء',
+                    daughters: 'البنات'
+                }[heir];
+
+                detailsElement.innerHTML += `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>${heirName}</strong>
+                            <span class="share-result">${formatCurrency(shares[heir])}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // تبديل السمة
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIconDark = document.querySelector('.theme-icon-dark');
+        const themeIconLight = document.querySelector('.theme-icon-light');
+
+        function setTheme(isDark) {
+            document.body.classList.toggle('dark-theme', isDark);
+            themeIconDark.style.display = isDark ? 'none' : 'block';
+            themeIconLight.style.display = isDark ? 'block' : 'none';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-theme');
+            setTheme(isDark);
+        });
+
+        // التحقق من السمة المحفوظة
+        if (localStorage.getItem('theme') === 'dark') {
+            setTheme(true);
+        }
+    </script>
+</body>
+</html>

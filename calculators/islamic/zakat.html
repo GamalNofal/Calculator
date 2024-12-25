@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة الزكاة | حساب زكاة المال</title>
+    <meta name="description" content="احسب زكاة مالك بسهولة وبدقة. حاسبة زكاة شاملة تدعم مختلف أنواع الأموال والذهب والفضة">
+    <meta name="keywords" content="حاسبة الزكاة, حساب الزكاة, زكاة المال, زكاة الذهب, نصاب الزكاة, كيفية حساب الزكاة">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/calculator.css">
+    <style>
+        .zakat-card {
+            background: var(--bs-white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .zakat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .asset-group {
+            border-bottom: 1px solid var(--bs-gray-200);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .asset-group:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .nisab-info {
+            background: rgba(var(--bs-primary-rgb), 0.05);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-card {
+            background: linear-gradient(45deg, var(--bs-primary), #2d8bbd);
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .input-group-text {
+            background: none;
+            border-right: none;
+        }
+
+        .form-control {
+            border-right: 1px solid var(--bs-gray-300);
+            border-left: none;
+        }
+
+        .currency-select {
+            width: auto;
+            flex: 0 0 auto;
+        }
+
+        .info-tooltip {
+            color: var(--bs-primary);
+            cursor: help;
+            margin-right: 0.5rem;
+        }
+
+        [data-bs-theme="dark"] .zakat-card {
+            background: var(--bs-dark);
+        }
+
+        [data-bs-theme="dark"] .asset-group {
+            border-color: var(--bs-dark-border);
+        }
+
+        [data-bs-theme="dark"] .nisab-info {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="../../index.html">
+                    <i class="bi bi-calculator"></i>
+                    الآلات الحاسبة الشاملة
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../islamic.html">الحاسبات الإسلامية</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button id="theme-toggle" class="btn btn-link">
+                            <i class="bi bi-moon-fill theme-icon-dark"></i>
+                            <i class="bi bi-sun-fill theme-icon-light" style="display: none;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+        <div class="calculator-container">
+            <h1 class="category-title mb-4">
+                <i class="bi bi-coin"></i>
+                حاسبة الزكاة
+            </h1>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <form id="zakatForm" class="needs-validation" novalidate>
+                        <!-- النقود والأرصدة -->
+                        <div class="zakat-card">
+                            <h3 class="mb-3">
+                                <i class="bi bi-cash-stack text-primary"></i>
+                                النقود والأرصدة
+                            </h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">النقود السائلة</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="cash" min="0" step="0.01">
+                                        <select class="form-select currency-select" id="currency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                        <button type="button" 
+                                                class="btn btn-outline-secondary" 
+                                                id="refresh-rates" 
+                                                title="تحديث أسعار العملات">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </div>
+                                    <small class="text-muted mt-1" id="rates-last-update"></small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">الأرصدة البنكية</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="bankBalance" min="0" step="0.01">
+                                        <select class="form-select currency-select" data-sync="currency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الذهب والفضة -->
+                        <div class="zakat-card">
+                            <h3 class="mb-3">
+                                <i class="bi bi-gem text-warning"></i>
+                                الذهب والفضة
+                            </h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        الذهب (جرام)
+                                        <i class="bi bi-info-circle info-tooltip" 
+                                           data-bs-toggle="tooltip" 
+                                           title="نصاب الذهب 85 جرام من الذهب عيار 24"></i>
+                                    </label>
+                                    <input type="number" class="form-control" id="gold" min="0" step="0.1">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        الفضة (جرام)
+                                        <i class="bi bi-info-circle info-tooltip" 
+                                           data-bs-toggle="tooltip" 
+                                           title="نصاب الفضة 595 جرام"></i>
+                                    </label>
+                                    <input type="number" class="form-control" id="silver" min="0" step="0.1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الأسهم والاستثمارات -->
+                        <div class="zakat-card">
+                            <h3 class="mb-3">
+                                <i class="bi bi-graph-up text-success"></i>
+                                الأسهم والاستثمارات
+                            </h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">قيمة الأسهم</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="stocks" min="0" step="0.01">
+                                        <select class="form-select currency-select" data-sync="currency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">استثمارات أخرى</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="investments" min="0" step="0.01">
+                                        <select class="form-select currency-select" data-sync="currency">
+                                            <optgroup label="العملات العربية">
+                                                <option value="SAR" data-symbol="ر.س">ريال سعودي</option>
+                                                <option value="AED" data-symbol="د.إ">درهم إماراتي</option>
+                                                <option value="KWD" data-symbol="د.ك">دينار كويتي</option>
+                                                <option value="QAR" data-symbol="ر.ق">ريال قطري</option>
+                                                <option value="BHD" data-symbol="د.ب">دينار بحريني</option>
+                                                <option value="OMR" data-symbol="ر.ع">ريال عماني</option>
+                                                <option value="EGP" data-symbol="ج.م">جنيه مصري</option>
+                                                <option value="JOD" data-symbol="د.أ">دينار أردني</option>
+                                                <option value="LBP" data-symbol="ل.ل">ليرة لبنانية</option>
+                                                <option value="IQD" data-symbol="د.ع">دينار عراقي</option>
+                                                <option value="MAD" data-symbol="د.م">درهم مغربي</option>
+                                            </optgroup>
+                                            <optgroup label="العملات العالمية الرئيسية">
+                                                <option value="USD" data-symbol="$">دولار أمريكي</option>
+                                                <option value="EUR" data-symbol="€">يورو</option>
+                                                <option value="GBP" data-symbol="£">جنيه إسترليني</option>
+                                                <option value="JPY" data-symbol="¥">ين ياباني</option>
+                                                <option value="CHF" data-symbol="Fr">فرنك سويسري</option>
+                                            </optgroup>
+                                            <optgroup label="عملات آسيوية">
+                                                <option value="CNY" data-symbol="¥">يوان صيني</option>
+                                                <option value="INR" data-symbol="₹">روبية هندية</option>
+                                                <option value="MYR" data-symbol="RM">رينغيت ماليزي</option>
+                                                <option value="SGD" data-symbol="S$">دولار سنغافوري</option>
+                                                <option value="IDR" data-symbol="Rp">روبية إندونيسية</option>
+                                            </optgroup>
+                                            <optgroup label="عملات أخرى">
+                                                <option value="TRY" data-symbol="₺">ليرة تركية</option>
+                                                <option value="PKR" data-symbol="₨">روبية باكستانية</option>
+                                                <option value="CAD" data-symbol="C$">دولار كندي</option>
+                                                <option value="AUD" data-symbol="A$">دولار أسترالي</option>
+                                                <option value="NZD" data-symbol="NZ$">دولار نيوزيلندي</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                            احسب الزكاة
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- معلومات النصاب -->
+                    <div class="zakat-card">
+                        <h3 class="mb-3">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            معلومات النصاب
+                        </h3>
+                        <div class="nisab-info">
+                            <div class="mb-2">
+                                <strong>نصاب الذهب:</strong>
+                                <span>85 جرام (عيار 24)</span>
+                            </div>
+                            <div class="mb-2">
+                                <strong>نصاب الفضة:</strong>
+                                <span>595 جرام</span>
+                            </div>
+                            <div class="mb-2">
+                                <strong>مقدار الزكاة:</strong>
+                                <span>2.5% من المال الذي حال عليه الحول</span>
+                            </div>
+                            <div>
+                                <strong>تحديث الأسعار:</strong>
+                                <span>يتم تحديث أسعار العملات تلقائياً كل ساعة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نتيجة حساب الزكاة -->
+                    <div id="zakatResult" style="display: none;">
+                        <div class="result-card">
+                            <h3 class="text-center mb-0">مقدار الزكاة</h3>
+                            <div class="result-value text-center" id="zakatAmount">
+                                0 ريال
+                            </div>
+                            <p class="text-center mb-0" id="zakatDetails"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-light">
+        <div class="container">
+            <p class="mb-0">جميع الحقوق محفوظة &copy; 2024 الآلات الحاسبة الشاملة</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/zakat.js"></script>
+</body>
+</html>
