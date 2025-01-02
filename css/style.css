@@ -595,6 +595,29 @@ body {
     opacity: 0.8;
 }
 
+/* Contact Links Styling */
+.footer-links .contact-link {
+    transition: color 0.3s ease;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.footer-links .contact-link:hover {
+    color: #198754;
+    background-color: rgba(25, 135, 84, 0.1);
+}
+
+.footer-links li {
+    display: flex;
+    align-items: center;
+}
+
+.footer-links i {
+    font-size: 1.2rem;
+    color: #198754;
+}
+
 /* Accessibility Improvements */
 :focus {
     outline: 3px solid rgba(25, 135, 84, 0.5);
