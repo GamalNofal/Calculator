@@ -166,7 +166,7 @@
                                    step="0.01"
                                    value="0.32"
                                    required>
-                            <span class="input-group-text">ريال/كيلوواط</span>
+                            <span class="input-group-text">كيلوواط</span>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="col-6 mb-3">
                                     <div class="fw-bold mb-2">التكلفة الشهرية</div>
-                                    <div class="total-cost" id="totalCost">0 ريال</div>
+                                    <div class="total-cost" id="totalCost">0</div>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
         class EnergyCalculator {
             constructor() {
                 this.appliances = [];
-                this.rate = 0.32; // ريال لكل كيلوواط
+                this.rate = 0.32; // كيلوواط
             }
 
             addAppliance(name, power, hours, days) {
@@ -336,52 +336,39 @@
         }
 
         function updateDisplay() {
-            const { totalConsumption, totalCost } = calculator.calculateTotals();
-            
-            // تحديث الإجماليات
-            document.getElementById('totalConsumption').textContent = 
-                totalConsumption.toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' كيلوواط';
-            document.getElementById('totalCost').textContent = 
-                totalCost.toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' ريال';
-
-            // تحديث قائمة الأجهزة
             const appliancesList = document.getElementById('appliancesList');
+            const totalConsumption = document.getElementById('totalConsumption');
+            const totalCost = document.getElementById('totalCost');
+            
+            // تحديث إجماليات الحساب
+            const totals = calculator.calculateTotals();
+            totalConsumption.textContent = `${totals.totalConsumption.toFixed(2)} كيلوواط`;
+            totalCost.textContent = totals.totalCost.toFixed(2);
+            
+            // تحديث قائمة الأجهزة
             appliancesList.innerHTML = '';
-
-            calculator.appliances.forEach(app => {
-                appliancesList.innerHTML += `
-                    <div class="appliance-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="bi ${applianceIcons[app.name]} appliance-icon"></i>
-                                <strong>${app.name}</strong>
-                            </div>
-                            <i class="bi bi-x-lg remove-btn" onclick="removeAppliance(${app.id})"></i>
+            calculator.appliances.forEach(appliance => {
+                const consumption = (appliance.power * appliance.hours * appliance.days / 1000);
+                const cost = consumption * calculator.rate;
+                
+                const div = document.createElement('div');
+                div.className = 'appliance-item';
+                div.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="${applianceIcons[appliance.name] || 'bi bi-lightning-charge'} appliance-icon"></i>
+                            <span class="fw-bold">${appliance.name}</span>
                         </div>
-                        <div class="mt-2">
-                            <div class="row">
-                                <div class="col-6">
-                                    <small class="text-muted">القدرة:</small>
-                                    <div>${app.power} واط</div>
-                                </div>
-                                <div class="col-6">
-                                    <small class="text-muted">ساعات التشغيل:</small>
-                                    <div>${app.hours} ساعة/يوم</div>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-6">
-                                    <small class="text-muted">الاستهلاك:</small>
-                                    <div>${app.consumption.toLocaleString('ar-EG', { maximumFractionDigits: 2 })} كيلوواط</div>
-                                </div>
-                                <div class="col-6">
-                                    <small class="text-muted">التكلفة:</small>
-                                    <div>${app.cost.toLocaleString('ar-EG', { maximumFractionDigits: 2 })} ريال</div>
-                                </div>
-                            </div>
-                        </div>
+                        <i class="bi bi-x-lg remove-btn" onclick="removeAppliance('${appliance.id}')"></i>
+                    </div>
+                    <div class="mt-2">
+                        <div>القدرة: ${appliance.power} واط</div>
+                        <div>ساعات التشغيل: ${appliance.hours} ساعة/يوم</div>
+                        <div>الاستهلاك: ${consumption.toFixed(2)} كيلوواط</div>
+                        <div>التكلفة: ${cost.toFixed(2)}</div>
                     </div>
                 `;
+                appliancesList.appendChild(div);
             });
         }
 
@@ -409,4 +396,3 @@
     </script>
 </body>
 </html>
-

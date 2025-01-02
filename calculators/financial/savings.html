@@ -125,40 +125,9 @@
                     <div class="mb-4">
                         <h4 class="section-title">الدخل الشهري</h4>
                         <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="currency" class="form-label">العملة</label>
-                                <select class="form-select" id="currency" required>
-                                    <optgroup label="العملات العربية">
-                                        <option value="SAR">الريال السعودي (SAR)</option>
-                                        <option value="AED">الدرهم الإماراتي (AED)</option>
-                                        <option value="EGP">الجنيه المصري (EGP)</option>
-                                        <option value="KWD">الدينار الكويتي (KWD)</option>
-                                        <option value="QAR">الريال القطري (QAR)</option>
-                                        <option value="OMR">الريال العماني (OMR)</option>
-                                        <option value="BHD">الدينار البحريني (BHD)</option>
-                                        <option value="IQD">الدينار العراقي (IQD)</option>
-                                        <option value="JOD">الدينار الأردني (JOD)</option>
-                                        <option value="LBP">الليرة اللبنانية (LBP)</option>
-                                        <option value="MAD">الدرهم المغربي (MAD)</option>
-                                    </optgroup>
-                                    <optgroup label="العملات العالمية">
-                                        <option value="USD">الدولار الأمريكي (USD)</option>
-                                        <option value="EUR">اليورو (EUR)</option>
-                                        <option value="GBP">الجنيه الإسترليني (GBP)</option>
-                                        <option value="JPY">الين الياباني (JPY)</option>
-                                        <option value="CHF">الفرنك السويسري (CHF)</option>
-                                        <option value="CAD">الدولار الكندي (CAD)</option>
-                                        <option value="AUD">الدولار الأسترالي (AUD)</option>
-                                        <option value="CNY">اليوان الصيني (CNY)</option>
-                                        <option value="INR">الروبية الهندية (INR)</option>
-                                        <option value="TRY">الليرة التركية (TRY)</option>
-                                    </optgroup>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="input-group mb-3">
                                     <input type="number" class="form-control" id="salary" placeholder="أدخل راتبك الشهري" min="0" step="100">
-                                    <span class="input-group-text">ريال</span>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +155,6 @@
                             <label class="form-label">المبلغ</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="expenseAmount" min="0" step="10">
-                                <span class="input-group-text">ريال</span>
                             </div>
                         </div>
                         <button class="btn btn-success w-100" onclick="addExpense()">إضافة المصروف</button>
@@ -197,7 +165,6 @@
                         <h4 class="section-title">هدف التوفير</h4>
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" id="savingsGoal" placeholder="أدخل هدف التوفير" min="0" step="1000">
-                            <span class="input-group-text">ريال</span>
                         </div>
                         <div class="progress">
                             <div class="progress-bar bg-success" id="goalProgress" role="progressbar" style="width: 0%"></div>
@@ -212,7 +179,7 @@
                         <h3 class="text-center mb-4">ملخص التوفير الشهري</h3>
                         
                         <div class="text-center mb-4">
-                            <div class="savings-amount" id="savingsAmount">0 ريال</div>
+                            <div class="savings-amount" id="savingsAmount">0</div>
                             <div class="savings-percentage" id="savingsPercentage">0%</div>
                         </div>
 
@@ -286,12 +253,10 @@
             }
 
             formatCurrency(amount) {
-                const currency = document.getElementById('currency').value || 'SAR';
                 return new Intl.NumberFormat('ar-EG', {
-                    style: 'currency',
-                    currency: currency,
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
+                    style: 'decimal',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
                 }).format(amount);
             }
 
@@ -472,4 +437,3 @@
     </script>
 </body>
 </html>
-

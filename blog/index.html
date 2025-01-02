@@ -6,21 +6,13 @@
     <title>المدونة - الآلات الحاسبة الشاملة</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/calculator.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/logo.css">
     <link rel="stylesheet" href="../css/blog.css">
-    <style>
-        .btn-primary {
-            background-color: #34C759;
-            border-color: #34C759;
-        }
-        .btn-primary:hover {
-            background-color: #2E865F;
-            border-color: #2E865F;
-        }
-    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
@@ -61,160 +53,372 @@
         </nav>
     </header>
 
-    <main class="container py-5">
-        <h1 class="text-center mb-5">المدونة</h1>
-        
-        <!-- Categories Filter -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="category-filters text-center">
-                    <button class="btn btn-outline-primary active mx-1 mb-2" data-category="all">الكل</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="islamic">إسلامية</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="health">الصحة</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="math">الرياضيات</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="finance">المال</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="time">الوقت</button>
-                    <button class="btn btn-outline-primary mx-1 mb-2" data-category="misc">متنوع</button>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section py-5 mb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h1 class="display-4 mb-3">مدونة الآلات الحاسبة الشاملة</h1>
+                        <p class="lead mb-4">اكتشف مقالات متنوعة في مجالات الصحة، المال، الرياضيات، والمزيد</p>
+                        <div class="search-box mb-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="searchInput" placeholder="ابحث في المقالات...">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <div class="container py-5">
+            <!-- Categories Filter -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="category-filters text-center">
+                        <button class="btn btn-outline-primary active mx-1 mb-2" data-category="all">الكل</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="islamic">إسلامية</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="health">الصحة</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="math">الرياضيات</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="finance">المال</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="time">الوقت</button>
+                        <button class="btn btn-outline-primary mx-1 mb-2" data-category="misc">متنوع</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="row g-4" id="blogPosts">
+                <!-- Islamic Articles -->
+                <div class="col-md-6 col-lg-4" data-category="islamic">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">إسلامية</span>
+                            <h2 class="h5">حاسبة الزكاة: دليل شامل لحساب زكاة المال</h2>
+                            <p class="card-text">تعرف على كيفية حساب زكاة المال بدقة: النصاب، الشروط، والأموال التي تجب فيها الزكاة...</p>
+                            <a href="islamic/zakat-calculator-new.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="islamic">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">إسلامية</span>
+                            <h2 class="h5">حاسبة المواريث: دليل تفصيلي للحساب والتوزيع</h2>
+                            <p class="card-text">دليل شامل لحاسبة المواريث: كيفية حساب وتوزيع التركة حسب الشريعة الإسلامية...</p>
+                            <a href="islamic/inheritance-calculator-new.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="finance">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الحاسبات المالية</span>
+                            <h2 class="h5">إدارة الأموال وأدوات التخطيط المالي</h2>
+                            <p class="card-text">دليلك الشامل لإدارة الأموال والتخطيط المالي، مع نصائح عملية وأدوات حاسبة...</p>
+                            <a href="financial/money-management.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="finance">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الحاسبات المالية</span>
+                            <h2 class="h5">دليل إدارة الاشتراكات الشهرية</h2>
+                            <p class="card-text">نصائح وإرشادات لإدارة الاشتراكات الشهرية وتوفير المال</p>
+                            <a href="financial/subscriptions.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Health Articles -->
+                <div class="col-md-6 col-lg-4" data-category="health">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الصحة</span>
+                            <h2 class="h5">دليلك الشامل لفهم قراءات ضغط الدم</h2>
+                            <p class="card-text">تعرف على كيفية قراءة وتفسير نتائج قياس ضغط الدم وما هي المعدلات الطبيعية...</p>
+                            <a href="health/blood-pressure.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="health">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الصحة</span>
+                            <h2 class="h5">كيف تحسب مؤشر كتلة الجسم وما أهميته؟</h2>
+                            <p class="card-text">دليل شامل عن مؤشر كتلة الجسم وكيفية استخدامه لتقييم وزنك...</p>
+                            <a href="health/bmi.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="health">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الصحة</span>
+                            <h2 class="h5">دليل حساب نسبة الدهون في الجسم</h2>
+                            <p class="card-text">تعرف على كيفية حساب نسبة الدهون في جسمك وأهميتها للصحة العامة...</p>
+                            <a href="health/body-fat.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="health">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الصحة</span>
+                            <h2 class="h5">كل ما تريد معرفته عن معدل ضربات القلب</h2>
+                            <p class="card-text">دليلك الشامل لفهم معدل ضربات القلب وكيفية قياسه...</p>
+                            <a href="health/heart-rate.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Math Articles -->
+                <div class="col-md-6 col-lg-4" data-category="math">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الرياضيات</span>
+                            <h2 class="h5">دليل استخدام الحاسبة العلمية</h2>
+                            <p class="card-text">تعلم كيفية استخدام جميع وظائف الحاسبة العلمية بكفاءة...</p>
+                            <a href="math/scientific-calculator.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="math">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الرياضيات</span>
+                            <h2 class="h5">أساسيات الحسابات الهندسية</h2>
+                            <p class="card-text">دليل شامل لحساب المساحات والأحجام للأشكال الهندسية المختلفة...</p>
+                            <a href="math/geometry.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Time Articles -->
+                <div class="col-md-6 col-lg-4" data-category="time">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">الوقت</span>
+                            <h2 class="h5">احسب وقت نومك المثالي</h2>
+                            <p class="card-text">تعرف على كيفية تحسين جودة نومك وحساب أوقات النوم المثالية...</p>
+                            <a href="time/sleep.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Misc Articles -->
+                <div class="col-md-6 col-lg-4" data-category="misc">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">متنوع</span>
+                            <h2 class="h5">حاسبة الحب: بين المرح والتسلية</h2>
+                            <p class="card-text">اكتشف كيف تعمل حاسبة الحب وشارك المرح مع أصدقائك...</p>
+                            <a href="misc/love.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4" data-category="misc">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">متنوع</span>
+                            <h2 class="h5">الصداقة والتوافق: كيف نبني علاقات صداقة قوية ودائمة</h2>
+                            <p class="card-text">دليل شامل عن الصداقة والتوافق بين الأصدقاء، مع نصائح عملية لبناء وتقوية العلاقات الاجتماعية</p>
+                            <a href="fun/friendship-compatibility.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4" data-category="misc">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">متنوع</span>
+                            <h2 class="h5">المزاج والمشاعر: فهم تأثيرها على حياتنا</h2>
+                            <p class="card-text">دليل شامل لفهم المزاج والمشاعر وتأثيرها على حياتنا اليومية، مع نصائح عملية للتحكم في مزاجك...</p>
+                            <a href="fun/mood-emotions.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4" data-category="misc">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">متنوع</span>
+                            <h2 class="h5">الفلافل: أكثر من مجرد وجبة سريعة</h2>
+                            <p class="card-text">اكتشف تاريخ الفلافل وأهميتها الثقافية وتأثيرها على نمط حياتنا اليومي</p>
+                            <a href="fun/falafel-counter.html" class="btn btn-primary">اقرأ المزيد</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4" data-category="misc">
+                    <article class="blog-card">
+                        <div class="card-body">
+                            <span class="badge bg-primary">متنوع</span>
+                            <h2 class="h5">دليلك الشامل لمقاسات الملابس العالمية</h2>
+                            <p class="card-text">تعرف على كيفية تحويل مقاسات الملابس بين المعايير العالمية المختلفة وفهم نظام المقاسات الحرفية</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="misc/clothing-size.html" class="btn btn-primary">اقرأ المزيد</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">السابق</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">التالي</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-        <!-- Blog Posts Grid -->
-        <div class="row g-4" id="blogPosts">
-            <!-- Islamic Articles -->
-<div class="col-md-6 col-lg-4" data-category="islamic">
-    <article class="blog-card">
-        <div class="card-body">
-            <h5 class="card-title">حاسبة الزكاة: دليل شامل لحساب زكاة المال</h5>
-            <p class="card-text">تعرف على كيفية حساب زكاة المال بدقة: النصاب، الشروط، والأموال التي تجب فيها الزكاة...</p>
-            <a href="islamic/zakat-calculator-new.html" class="btn btn-primary">اقرأ المزيد</a>
-        </div>
-    </article>
-</div>
-
-<div class="col-md-6 col-lg-4" data-category="islamic">
-    <article class="blog-card">
-        <div class="card-body">
-            <h5 class="card-title">حاسبة المواريث: دليل تفصيلي للحساب والتوزيع</h5>
-            <p class="card-text">دليل شامل لحاسبة المواريث: كيفية حساب وتوزيع التركة حسب الشريعة الإسلامية...</p>
-            <a href="islamic/inheritance-calculator-new.html" class="btn btn-primary">اقرأ المزيد</a>
-        </div>
-    </article>
-</div>
-            <div class="col-md-6 col-lg-4" data-category="finance">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">إدارة الأموال وأدوات التخطيط المالي</h5>
-                        <p class="card-text">دليلك الشامل لإدارة الأموال والتخطيط المالي، مع نصائح عملية وأدوات حاسبة...</p>
-                        <a href="financial/money-management.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Health Articles -->
-            <div class="col-md-6 col-lg-4" data-category="health">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">دليلك الشامل لفهم قراءات ضغط الدم</h5>
-                        <p class="card-text">تعرف على كيفية قراءة وتفسير نتائج قياس ضغط الدم وما هي المعدلات الطبيعية...</p>
-                        <a href="health/blood-pressure.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-category="health">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">كيف تحسب مؤشر كتلة الجسم وما أهميته؟</h5>
-                        <p class="card-text">دليل شامل عن مؤشر كتلة الجسم وكيفية استخدامه لتقييم وزنك...</p>
-                        <a href="health/bmi.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-category="health">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">دليل حساب نسبة الدهون في الجسم</h5>
-                        <p class="card-text">تعرف على كيفية حساب نسبة الدهون في جسمك وأهميتها للصحة العامة...</p>
-                        <a href="health/body-fat.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-category="health">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">كل ما تريد معرفته عن معدل ضربات القلب</h5>
-                        <p class="card-text">دليلك الشامل لفهم معدل ضربات القلب وكيفية قياسه...</p>
-                        <a href="health/heart-rate.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Math Articles -->
-            <div class="col-md-6 col-lg-4" data-category="math">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">دليل استخدام الحاسبة العلمية</h5>
-                        <p class="card-text">تعلم كيفية استخدام جميع وظائف الحاسبة العلمية بكفاءة...</p>
-                        <a href="math/scientific-calculator.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-category="math">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">أساسيات الحسابات الهندسية</h5>
-                        <p class="card-text">دليل شامل لحساب المساحات والأحجام للأشكال الهندسية المختلفة...</p>
-                        <a href="math/geometry.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Time Articles -->
-            <div class="col-md-6 col-lg-4" data-category="time">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">احسب وقت نومك المثالي</h5>
-                        <p class="card-text">تعرف على كيفية تحسين جودة نومك وحساب أوقات النوم المثالية...</p>
-                        <a href="time/sleep.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Misc Articles -->
-            <div class="col-md-6 col-lg-4" data-category="misc">
-                <article class="blog-card">
-                    <div class="card-body">
-                        <h5 class="card-title">حاسبة الحب: بين المرح والتسلية</h5>
-                        <p class="card-text">اكتشف كيف تعمل حاسبة الحب وشارك المرح مع أصدقائك...</p>
-                        <a href="misc/love.html" class="btn btn-primary">اقرأ المزيد</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <nav aria-label="Page navigation" class="mt-4">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">السابق</span>
-                    </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">التالي</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </main>
 
+    <footer class="footer mt-5 py-4">
+        <div class="container">
+            <div class="text-center">
+                <p>جميع الحقوق محفوظة 2024 الآلات الحاسبة الشاملة</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const blogPosts = document.querySelectorAll('.blog-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            blogPosts.forEach(post => {
+                const title = post.querySelector('h2').textContent.toLowerCase();
+                const content = post.querySelector('.card-text').textContent.toLowerCase();
+                const category = post.closest('[data-category]').getAttribute('data-category');
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm) || category.includes(searchTerm)) {
+                    post.closest('[data-category]').style.display = '';
+                } else {
+                    post.closest('[data-category]').style.display = 'none';
+                }
+            });
+        });
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-filters button');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter posts
+                blogPosts.forEach(post => {
+                    const postCategory = post.closest('[data-category]').getAttribute('data-category');
+                    if (category === 'all' || category === postCategory) {
+                        post.closest('[data-category]').style.display = '';
+                    } else {
+                        post.closest('[data-category]').style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script>
+        // Generate table of contents for articles
+        function generateTableOfContents() {
+            const article = document.querySelector('.blog-content');
+            if (!article) return;
+            
+            const headings = article.querySelectorAll('h2, h3');
+            if (headings.length < 3) return; // Only show TOC if there are enough headings
+            
+            const toc = document.createElement('div');
+            toc.className = 'toc';
+            toc.innerHTML = '<h2 class="toc-title">محتويات المقال</h2><ul class="toc-list"></ul>';
+            
+            const tocList = toc.querySelector('.toc-list');
+            
+            headings.forEach((heading, index) => {
+                const id = `heading-${index}`;
+                heading.id = id;
+                
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#${id}">${heading.textContent}</a>`;
+                tocList.appendChild(li);
+            });
+            
+            article.insertBefore(toc, article.firstChild);
+        }
+        
+        // Generate related articles
+        function generateRelatedArticles() {
+            const currentArticle = document.querySelector('.blog-content');
+            if (!currentArticle) return;
+            
+            const currentCategory = currentArticle.dataset.category;
+            const allArticles = Array.from(document.querySelectorAll('.blog-card'));
+            
+            const relatedArticles = allArticles
+                .filter(article => article.dataset.category === currentCategory)
+                .slice(0, 3);
+                
+            if (relatedArticles.length === 0) return;
+            
+            const relatedSection = document.createElement('section');
+            relatedSection.className = 'related-articles';
+            relatedSection.innerHTML = `
+                <h2 class="related-articles-title">مقالات ذات صلة</h2>
+                <div class="row">
+                    ${relatedArticles.map(article => `
+                        <div class="col-md-4">
+                            <div class="related-article-card">
+                                <h3>${article.querySelector('h2').textContent}</h3>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            currentArticle.appendChild(relatedSection);
+        }
+        
+        // Initialize features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+            generateRelatedArticles();
+        });
+    </script>
     <script src="../js/blog.js"></script>
 </body>
 </html>
