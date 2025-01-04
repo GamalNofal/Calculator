@@ -5,63 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حاسبة مطابقة المزاج - اكتشف مزاجك الحالي</title>
     <meta name="description" content="اكتشف مزاجك الحالي من خلال مجموعة من الأسئلة العشوائية الممتعة! تعرف على حالتك المزاجية">
-    <meta name="keywords" content="حاسبة المزاج, مطابقة المزاج, حالة مزاجية, مشاعر, عواطف">
+    <meta name="keywords" content="حاسبة المزاج, مطابقة المزاج, حاسبة مضحكة, تحليل المزاج">
     <meta name="author" content="الآلات الحاسبة الشاملة">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        .mood-result {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 1rem;
-            margin: 2rem 0;
-            background: var(--bs-light);
-            transition: all 0.3s ease;
-        }
-        .dark-theme .mood-result {
-            background: var(--bs-dark);
-        }
-        .mood-emoji {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        .mood-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--bs-primary);
-        }
-        .mood-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        .question-card {
-            background: var(--bs-light);
-            padding: 1.5rem;
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        .dark-theme .question-card {
-            background: var(--bs-dark);
-        }
-        .answer-btn {
-            margin: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2rem;
-            transition: all 0.3s ease;
-        }
-    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-EG5T75NQHF');
     </script>
 </head>
@@ -82,12 +38,6 @@
                             <a class="nav-link active" href="../fun.html">الحاسبات المضحكة</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <button id="theme-toggle" class="btn btn-link">
-                            <i class="bi bi-moon-fill theme-icon-dark fs-5"></i>
-                            <i class="bi bi-sun-fill theme-icon-light fs-5" style="display: none;"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -95,33 +45,52 @@
 
     <main>
         <div class="calculator-container">
-            <h1 class="category-title">حاسبة مطابقة المزاج 🎭</h1>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <form id="moodForm" class="calculator-form">
-                        <div id="questionContainer" class="question-card">
-                            <!-- الأسئلة ستظهر هنا -->
-                        </div>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div id="result" class="mood-result" style="display: none;">
-                            <!-- النتائج ستظهر هنا -->
-                        </div>
-                        <button type="button" id="startButton" class="btn btn-primary btn-lg w-100">ابدأ الاختبار</button>
-                    </form>
-                </div>
-            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h1 class="category-title text-center">حاسبة مطابقة المزاج 😊</h1>
+                        
+                        <div class="card calculator-card">
+                            <div class="card-body">
+                                <div id="startScreen" class="text-center p-4 mb-4">
+                                    <h2 class="mb-4">اكتشف مزاجك الحالي!</h2>
+                                    <p class="lead mb-4">أجب على بعض الأسئلة البسيطة لنكتشف معاً حالتك المزاجية 🎯</p>
+                                    <button id="startButton" class="btn btn-primary btn-lg">ابدأ الآن</button>
+                                </div>
 
-            <div class="info-box mt-5">
-                <h4>حقائق عن المزاج والمشاعر</h4>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">المزاج يمكن أن يتغير عدة مرات في اليوم الواحد 🔄</li>
-                    <li class="list-group-item">التعبير عن مشاعرك يساعد في تحسين صحتك النفسية 💚</li>
-                    <li class="list-group-item">المزاج الإيجابي يعزز الإبداع والإنتاجية ✨</li>
-                    <li class="list-group-item">للمزيد من المعلومات عن المزاج والمشاعر، اقرأ <a href="../../blog/fun/mood-emotions.html" class="text-success">مقالنا الشامل</a> 📚</li>
-                </ul>
+                                <form id="moodForm" class="calculator-form" style="display: none;">
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div id="questionContainer" class="text-center">
+                                        <!-- الأسئلة ستظهر هنا -->
+                                    </div>
+                                </form>
+
+                                <div id="result" class="text-center" style="display: none;">
+                                    <!-- النتائج ستظهر هنا -->
+                                </div>
+
+                                <div id="moodHistory" class="mt-4" style="display: none;">
+                                    <h3 class="text-center">سجل مزاجك السابق</h3>
+                                    <div id="moodHistoryContainer" class="d-flex flex-wrap justify-content-center gap-2">
+                                        <!-- سجل المزاج السابق سيظهر هنا -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-box mt-5">
+                            <h4>حقائق عن المزاج</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">المزاج الإيجابي يعزز جهاز المناعة! 😊</li>
+                                <li class="list-group-item">الضحك يطلق هرمونات السعادة في الجسم! 😄</li>
+                                <li class="list-group-item">التمارين الرياضية تحسن المزاج بشكل فوري! 🏃‍♂️</li>
+                                <li class="list-group-item">الموسيقى لها تأثير قوي على تغيير مزاجنا! 🎵</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -140,130 +109,188 @@
     <script>
         const questions = [
             {
-                question: "ما هو لونك المفضل حالياً؟",
-                answers: ["أزرق هادئ", "أحمر حيوي", "أخضر منعش", "أصفر مشرق", "بنفسجي غامض"]
+                question: "كيف تصف طاقتك في هذه اللحظة؟",
+                answers: [
+                    "متحمس ومليء بالنشاط ⚡",
+                    "هادئ ومسترخي 🌿",
+                    "متعب وخامل 😴",
+                    "متوتر وقلق 😰",
+                    "معتدل ومتوازن 😊"
+                ]
             },
             {
-                question: "ما نوع الطقس الذي تفضله الآن؟",
-                answers: ["مشمس ودافئ", "ممطر وهادئ", "عاصف ومثير", "غائم ولطيف", "ثلجي وبارد"]
+                question: "ما هو أول شيء جذب انتباهك اليوم؟",
+                answers: [
+                    "السماء الزرقاء 🌤️",
+                    "فنجان القهوة ☕",
+                    "صوت الموسيقى 🎵",
+                    "ابتسامة شخص ما 😊",
+                    "شيء جميل في الطبيعة 🌸"
+                ]
+            },
+            {
+                question: "ما هو نوع الموسيقى الذي تريد سماعه الآن؟",
+                answers: [
+                    "موسيقى حماسية 🎸",
+                    "موسيقى هادئة 🎹",
+                    "أغاني حزينة 🎻",
+                    "موسيقى راقصة 💃",
+                    "صمت تام 🤫"
+                ]
             },
             {
                 question: "ما هو نشاطك المفضل في هذه اللحظة؟",
-                answers: ["القراءة بهدوء", "الرياضة والحركة", "الاستماع للموسيقى", "التحدث مع الأصدقاء", "النوم والراحة"]
+                answers: [
+                    "الخروج مع الأصدقاء 👥",
+                    "القراءة في هدوء 📚",
+                    "ممارسة الرياضة 🏃‍♂️",
+                    "مشاهدة فيلم 🎬",
+                    "النوم 😴"
+                ]
             },
             {
-                question: "ما هو مشروبك المفضل الآن؟",
-                answers: ["قهوة ساخنة", "شاي منعش", "عصير طازج", "ماء نقي", "مشروب غازي"]
-            },
-            {
-                question: "كيف تصف إيقاع يومك؟",
-                answers: ["هادئ ومتوازن", "سريع ونشيط", "متقلب ومتغير", "بطيء ومريح", "مليء بالمفاجآت"]
-            }
-        ];
-
-        const moods = [
-            {
-                name: "سعيد ومتفائل",
-                emoji: "😊",
-                description: "أنت في مزاج رائع! تشعر بالتفاؤل والإيجابية تجاه كل شيء من حولك."
-            },
-            {
-                name: "هادئ ومسترخي",
-                emoji: "😌",
-                description: "تشعر بالسلام الداخلي والهدوء. هذا وقت مثالي للتأمل والاسترخاء."
-            },
-            {
-                name: "نشيط ومتحمس",
-                emoji: "🤗",
-                description: "طاقتك عالية وأنت متحمس لخوض تجارب جديدة ومثيرة!"
-            },
-            {
-                name: "حالم ومبدع",
-                emoji: "🌟",
-                description: "خيالك نشط وأفكارك إبداعية. استغل هذه الطاقة في مشاريع إبداعية."
-            },
-            {
-                name: "متأمل وفلسفي",
-                emoji: "🤔",
-                description: "أنت في حالة تفكير عميق وتأمل. وقت مثالي لاكتشاف الذات."
-            },
-            {
-                name: "مرح ومضحك",
-                emoji: "😄",
-                description: "روح الدعابة لديك عالية! أنت تنشر البهجة والضحك أينما ذهبت."
+                question: "كيف تتخيل بقية يومك؟",
+                answers: [
+                    "مليء بالمغامرات 🎢",
+                    "هادئ ومريح 🛋️",
+                    "مشغول ومنتج 💼",
+                    "اجتماعي ومرح 🎉",
+                    "عادي وروتيني 📅"
+                ]
             }
         ];
 
         let currentQuestion = 0;
         let answers = [];
+        let moodHistory = JSON.parse(localStorage.getItem('moodHistory')) || [];
+
+        function updateProgress() {
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+        }
 
         function showQuestion() {
-            const questionContainer = document.getElementById('questionContainer');
-            const question = questions[currentQuestion];
+            const questionCard = document.getElementById('questionContainer');
+            const questionText = document.createElement('h3');
+            questionText.textContent = questions[currentQuestion].question;
+            questionCard.innerHTML = '';
+            questionCard.appendChild(questionText);
             
-            questionContainer.innerHTML = `
-                <h4 class="mb-4">${question.question}</h4>
-                <div class="d-flex flex-wrap justify-content-center">
-                    ${question.answers.map(answer => `
-                        <button type="button" class="btn btn-outline-primary answer-btn" onclick="selectAnswer('${answer}')">${answer}</button>
-                    `).join('')}
-                </div>
-            `;
-
-            // تحديث شريط التقدم
-            const progress = (currentQuestion / questions.length) * 100;
-            document.querySelector('.progress-bar').style.width = `${progress}%`;
+            questions[currentQuestion].answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'btn btn-outline-primary';
+                button.textContent = answer;
+                button.onclick = () => selectAnswer(answer);
+                questionCard.appendChild(button);
+            });
+            
+            document.getElementById('moodForm').style.display = 'block';
+            updateProgress();
         }
 
         function selectAnswer(answer) {
             answers.push(answer);
-            currentQuestion++;
+            
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 300);
+        }
 
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
-            }
+        function analyzeMood() {
+            // Simplified mood analysis based on answers
+            const moods = {
+                energetic: "متحمس ومليء بالطاقة 🌟",
+                peaceful: "هادئ ومتوازن 🌿",
+                creative: "مبدع ومبتكر 🎨",
+                reflective: "متأمل ومفكر 🤔",
+                social: "اجتماعي ومرح 🎉"
+            };
+            
+            // Simple random selection for demo
+            const moodKeys = Object.keys(moods);
+            const randomMood = moodKeys[Math.floor(Math.random() * moodKeys.length)];
+            return {
+                mood: moods[randomMood],
+                recommendations: getRecommendations(randomMood)
+            };
+        }
+
+        function getRecommendations(mood) {
+            const recommendations = {
+                energetic: "استغل طاقتك في ممارسة الرياضة أو بدء مشروع جديد! 🏃‍♂️",
+                peaceful: "استمتع بجلسة تأمل أو اقرأ كتاباً في مكان هادئ 📚",
+                creative: "جرب رسم شيء جديد أو اكتب قصة قصيرة 🎨",
+                reflective: "دوّن أفكارك في مذكراتك أو تأمل في الطبيعة 🌳",
+                social: "اتصل بصديق أو نظم لقاءً صغيراً مع الأحباب 👥"
+            };
+            return recommendations[mood] || "خذ وقتاً للاسترخاء واستمتع بيومك! ✨";
         }
 
         function showResult() {
-            const resultContainer = document.getElementById('result');
-            const questionContainer = document.getElementById('questionContainer');
-            const progressBar = document.querySelector('.progress');
-            
-            // اختيار مزاج عشوائي
-            const randomMood = moods[Math.floor(Math.random() * moods.length)];
-            
-            questionContainer.style.display = 'none';
-            progressBar.style.display = 'none';
-            resultContainer.style.display = 'block';
-            
-            resultContainer.innerHTML = `
-                <div class="mood-emoji">${randomMood.emoji}</div>
-                <div class="mood-title">${randomMood.name}</div>
-                <div class="mood-description">${randomMood.description}</div>
-                <button type="button" class="btn btn-primary mt-4" onclick="resetQuiz()">جرب مرة أخرى</button>
+            const result = analyzeMood();
+            document.getElementById('moodForm').style.display = 'none';
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h2>مزاجك الحالي: ${result.mood}</h2>
+                <p>توصيات لتحسين مزاجك: ${result.recommendations}</p>
+                <button onclick="saveMood()" class="btn btn-success btn-lg">حفظ المزاج</button>
+                <button onclick="resetQuiz()" class="btn btn-outline-primary btn-lg ms-2">إعادة الاختبار</button>
             `;
+            
+            if (moodHistory.length > 0) {
+                document.getElementById('moodHistory').style.display = 'block';
+                updateMoodHistory();
+            }
+        }
+
+        function saveMood() {
+            const currentMood = document.querySelector('#result h2').textContent;
+            const timestamp = new Date().toLocaleString('ar-EG');
+            moodHistory.unshift({ mood: currentMood, timestamp });
+            if (moodHistory.length > 5) moodHistory.pop();
+            
+            localStorage.setItem('moodHistory', JSON.stringify(moodHistory));
+            document.getElementById('moodHistory').style.display = 'block';
+            updateMoodHistory();
+        }
+
+        function updateMoodHistory() {
+            const badgesContainer = document.getElementById('moodHistoryContainer');
+            badgesContainer.innerHTML = '';
+            
+            moodHistory.forEach(item => {
+                const badge = document.createElement('div');
+                badge.className = 'badge bg-primary';
+                badge.textContent = `${item.mood} - ${item.timestamp}`;
+                badgesContainer.appendChild(badge);
+            });
         }
 
         function resetQuiz() {
             currentQuestion = 0;
             answers = [];
-            const resultContainer = document.getElementById('result');
-            const questionContainer = document.getElementById('questionContainer');
-            const progressBar = document.querySelector('.progress');
-            
-            resultContainer.style.display = 'none';
-            questionContainer.style.display = 'block';
-            progressBar.style.display = 'block';
-            showQuestion();
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+            updateProgress();
         }
 
-        // بدء الاختبار عند الضغط على زر البدء
+        // Initialize
         document.getElementById('startButton').addEventListener('click', function() {
-            this.style.display = 'none';
+            document.getElementById('startScreen').style.display = 'none';
             showQuestion();
         });
+
+        // Update mood history display on load if exists
+        if (moodHistory.length > 0) {
+            document.getElementById('moodHistory').style.display = 'block';
+            updateMoodHistory();
+        }
     </script>
 </body>
 </html>

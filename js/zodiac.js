@@ -8,7 +8,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الأسد', 'القوس'],
         color: '#FF4136',
         stone: 'الياقوت الأحمر',
-        description: 'برج الحمل هو أول الأبراج، يتميز أصحابه بالشجاعة والحماس والطاقة العالية.'
+        description: 'برج الحمل هو أول الأبراج، يتميز أصحابه بالشجاعة والحماس والطاقة العالية.',
+        emoji: '🐏'
     },
     'الثور': { 
         symbol: '♉', 
@@ -18,7 +19,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['العذراء', 'الجدي'],
         color: '#2ECC40',
         stone: 'الزمرد',
-        description: 'برج الثور يتميز بالصبر والثبات، محب للجمال والفنون والطبيعة.'
+        description: 'برج الثور يتميز بالصبر والثبات، محب للجمال والفنون والطبيعة.',
+        emoji: '🐂'
     },
     'الجوزاء': { 
         symbol: '♊', 
@@ -28,7 +30,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الميزان', 'الدلو'],
         color: '#FFDC00',
         stone: 'العقيق',
-        description: 'برج الجوزاء متعدد المواهب، سريع التكيف، يحب التواصل والتعلم.'
+        description: 'برج الجوزاء متعدد المواهب، سريع التكيف، يحب التواصل والتعلم.',
+        emoji: '👥'
     },
     'السرطان': { 
         symbol: '♋', 
@@ -38,7 +41,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['العقرب', 'الحوت'],
         color: '#B10DC9',
         stone: 'اللؤلؤ',
-        description: 'برج السرطان عاطفي وحساس، يهتم كثيراً بالعائلة والمنزل.'
+        description: 'برج السرطان هو أكثر الأبراج عاطفية وحدساً! 💫',
+        emoji: '🦀'
     },
     'الأسد': { 
         symbol: '♌', 
@@ -48,7 +52,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الحمل', 'القوس'],
         color: '#FF851B',
         stone: 'الياقوت الأصفر',
-        description: 'برج الأسد قيادي وكريم، يحب الإبداع والتميز والمسرح.'
+        description: 'برج الأسد هو أكثر الأبراج النارية حماساً وإبداعاً! 🔥',
+        emoji: '🦁'
     },
     'العذراء': { 
         symbol: '♍', 
@@ -58,7 +63,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الثور', 'الجدي'],
         color: '#7FDBFF',
         stone: 'العقيق اليماني',
-        description: 'برج العذراء دقيق ومنظم، يهتم بالتفاصيل والصحة والنظام.'
+        description: 'برج العذراء دقيق ومنظم، يهتم بالتفاصيل والصحة والنظام.',
+        emoji: '👧'
     },
     'الميزان': { 
         symbol: '♎', 
@@ -68,7 +74,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الجوزاء', 'الدلو'],
         color: '#F012BE',
         stone: 'الياقوت الأزرق',
-        description: 'برج الميزان يحب العدل والتوازن، دبلوماسي ومحب للجمال.'
+        description: 'برج الميزان يحب العدل والتوازن، دبلوماسي ومحب للجمال.',
+        emoji: '⚖️'
     },
     'العقرب': { 
         symbol: '♏', 
@@ -78,7 +85,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['السرطان', 'الحوت'],
         color: '#85144B',
         stone: 'الزبرجد',
-        description: 'برج العقرب غامض وقوي، يتميز بالذكاء العاطفي والحدس القوي.'
+        description: 'برج العقرب غامض وقوي، يتميز بالذكاء العاطفي والحدس القوي.',
+        emoji: '🦂'
     },
     'القوس': { 
         symbol: '♐', 
@@ -88,7 +96,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الحمل', 'الأسد'],
         color: '#39CCCC',
         stone: 'الفيروز',
-        description: 'برج القوس متفائل ومغامر، يحب السفر واكتشاف الثقافات الجديدة.'
+        description: 'برج القوس متفائل ومغامر، يحب السفر واكتشاف الثقافات الجديدة.',
+        emoji: '🏹'
     },
     'الجدي': { 
         symbol: '♑', 
@@ -98,7 +107,8 @@ const ZODIAC_SIGNS = {
         compatibility: ['الثور', 'العذراء'],
         color: '#01FF70',
         stone: 'الماس',
-        description: 'برج الجدي طموح وعملي، يسعى دائماً للنجاح والتقدم في الحياة.'
+        description: 'برج الجدي طموح وعملي، يسعى دائماً للنجاح والتقدم في الحياة.',
+        emoji: '🐐'
     },
     'الدلو': { 
         symbol: '♒', 
@@ -106,9 +116,10 @@ const ZODIAC_SIGNS = {
         element: 'الهواء',
         lucky_numbers: [11, 20, 29],
         compatibility: ['الجوزاء', 'الميزان'],
-        color: '#0074D9',
-        stone: 'العقيق الأزرق',
-        description: 'برج الدلو مبتكر ومستقل، يهتم بالإنسانية والتكنولوجيا والمستقبل.'
+        color: '#001F3F',
+        stone: 'الفيروز',
+        description: 'برج الدلو مبتكر ومستقل، يهتم بالإنسانية والتقدم العلمي.',
+        emoji: '🏺'
     },
     'الحوت': { 
         symbol: '♓', 
@@ -116,9 +127,10 @@ const ZODIAC_SIGNS = {
         element: 'الماء',
         lucky_numbers: [12, 21, 30],
         compatibility: ['السرطان', 'العقرب'],
-        color: '#3D9970',
-        stone: 'الزبرجد الأخضر',
-        description: 'برج الحوت حساس وفني، يتميز بالخيال الواسع والإبداع.'
+        color: '#0074D9',
+        stone: 'الزبرجد',
+        description: 'برج الحوت حساس وفني، يتميز بالخيال الواسع والإبداع.',
+        emoji: '🐟'
     }
 };
 
@@ -128,7 +140,7 @@ function populateDateDropdowns() {
     const monthSelect = document.getElementById('birthMonth');
     const yearSelect = document.getElementById('birthYear');
 
-    // إضافة الأيام 1-31
+    // إضافة الأيام
     for (let i = 1; i <= 31; i++) {
         const option = document.createElement('option');
         option.value = i;
@@ -136,12 +148,9 @@ function populateDateDropdowns() {
         daySelect.appendChild(option);
     }
 
-    // إضافة الأشهر بالعربية
-    const arabicMonths = [
-        'يناير', 'فبراير', 'مارس', 'إبريل', 'مايو', 'يونيو',
-        'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
-    ];
-    arabicMonths.forEach((month, index) => {
+    // إضافة الأشهر
+    const months = ['يناير', 'فبراير', 'مارس', 'إبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    months.forEach((month, index) => {
         const option = document.createElement('option');
         option.value = index + 1;
         option.textContent = month;
@@ -150,16 +159,12 @@ function populateDateDropdowns() {
 
     // إضافة السنوات
     const currentYear = new Date().getFullYear();
-    for (let i = currentYear; i >= currentYear - 100; i--) {
+    for (let i = currentYear; i >= 1900; i--) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i;
         yearSelect.appendChild(option);
     }
-
-    // إضافة مستمعي الأحداث للتحقق من صحة التاريخ
-    monthSelect.addEventListener('change', updateDays);
-    yearSelect.addEventListener('change', updateDays);
 }
 
 // تحديث عدد الأيام حسب الشهر والسنة
@@ -176,137 +181,130 @@ function updateDays() {
     const daysInMonth = new Date(year, month, 0).getDate();
     const currentDay = parseInt(daySelect.value);
     
-    // حفظ اليوم الحالي المحدد
     daySelect.innerHTML = '<option value="">اختر اليوم</option>';
     
     for (let i = 1; i <= daysInMonth; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i;
+        if (i === currentDay) option.selected = true;
         daySelect.appendChild(option);
-    }
-    
-    // إعادة تحديد اليوم السابق إذا كان صالحاً
-    if (currentDay && currentDay <= daysInMonth) {
-        daySelect.value = currentDay;
     }
 }
 
 // تهيئة حاسبة الأبراج
 function initializeZodiacCalculator() {
     const form = document.getElementById('zodiacForm');
+    const monthSelect = document.getElementById('birthMonth');
+    const yearSelect = document.getElementById('birthYear');
+
+    monthSelect.addEventListener('change', updateDays);
+    yearSelect.addEventListener('change', updateDays);
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const day = parseInt(document.getElementById('birthDay').value);
         const month = parseInt(document.getElementById('birthMonth').value);
         
-        if (!day || !month) {
-            showError('الرجاء إدخال تاريخ ميلاد صحيح');
-            return;
+        if (day && month) {
+            const zodiacSign = calculateZodiacSign(day, month);
+            displayZodiacResult(ZODIAC_SIGNS[zodiacSign]);
+        } else {
+            showError('الرجاء إدخال تاريخ ميلادك بشكل صحيح');
         }
-        
-        const zodiacSign = calculateZodiacSign(day, month);
-        displayZodiacResult(ZODIAC_SIGNS[zodiacSign]);
     });
-}
-
-// التحقق من صحة التاريخ
-function addDateValidation() {
-    const daySelect = document.getElementById('birthDay');
-    const monthSelect = document.getElementById('birthMonth');
-    const yearSelect = document.getElementById('birthYear');
-    
-    [daySelect, monthSelect, yearSelect].forEach(select => {
-        select.addEventListener('change', validateDate);
-    });
-}
-
-// حساب البرج
-function calculateZodiacSign(day, month) {
-    const dates = {
-        'الحمل': [3, 21, 4, 19],
-        'الثور': [4, 20, 5, 20],
-        'الجوزاء': [5, 21, 6, 20],
-        'السرطان': [6, 21, 7, 22],
-        'الأسد': [7, 23, 8, 22],
-        'العذراء': [8, 23, 9, 22],
-        'الميزان': [9, 23, 10, 22],
-        'العقرب': [10, 23, 11, 21],
-        'القوس': [11, 22, 12, 21],
-        'الجدي': [12, 22, 1, 19],
-        'الدلو': [1, 20, 2, 18],
-        'الحوت': [2, 19, 3, 20]
-    };
-    
-    for (const [sign, [startMonth, startDay, endMonth, endDay]] of Object.entries(dates)) {
-        if ((month === startMonth && day >= startDay) || (month === endMonth && day <= endDay)) {
-            return sign;
-        }
-    }
-    return 'الجدي'; // للتواريخ المتبقية (22-31 ديسمبر)
 }
 
 // عرض النتيجة مع الرسوم المتحركة
 function displayZodiacResult(zodiacInfo) {
     const resultDiv = document.getElementById('result');
-    resultDiv.style.display = 'none'; // إخفاء مؤقت للتأثير المتحرك
-    
-    const resultHTML = `
-        <div class="zodiac-result">
-            <div class="zodiac-symbol">${zodiacInfo.symbol}</div>
-            <h2 class="zodiac-title mb-4">برجك هو: ${Object.keys(ZODIAC_SIGNS).find(key => ZODIAC_SIGNS[key] === zodiacInfo)}</h2>
-            
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+        <div class="result-card">
+            <div class="zodiac-symbol mb-4">
+                <span class="display-1">${zodiacInfo.emoji}</span>
+                <span class="display-4 ms-2">${zodiacInfo.symbol}</span>
+            </div>
+            <h2 class="zodiac-name mb-4">برجك هو: ${Object.keys(ZODIAC_SIGNS).find(key => ZODIAC_SIGNS[key] === zodiacInfo)}</h2>
             <div class="zodiac-details">
-                <div class="detail-item">
-                    <h4>الصفات 🎭</h4>
-                    <p>${zodiacInfo.traits}</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="info-item mb-3">
+                            <i class="bi bi-stars"></i>
+                            <strong>الصفات:</strong> ${zodiacInfo.traits}
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="bi bi-droplet-fill"></i>
+                            <strong>العنصر:</strong> ${zodiacInfo.element}
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="bi bi-dice-5"></i>
+                            <strong>أرقام الحظ:</strong> ${zodiacInfo.lucky_numbers.join(', ')}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item mb-3">
+                            <i class="bi bi-heart-fill"></i>
+                            <strong>التوافق مع:</strong> ${zodiacInfo.compatibility.join('، ')}
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="bi bi-palette-fill"></i>
+                            <strong>اللون المميز:</strong> <span style="color: ${zodiacInfo.color}">■</span>
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="bi bi-gem"></i>
+                            <strong>الحجر الكريم:</strong> ${zodiacInfo.stone}
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="detail-item">
-                    <h4>العنصر 🌍</h4>
-                    <p>${zodiacInfo.element}</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4>الأرقام المحظوظة 🎲</h4>
-                    <p>${zodiacInfo.lucky_numbers.join(' - ')}</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4>التوافق ❤️</h4>
-                    <p>${zodiacInfo.compatibility.join(' - ')}</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4>اللون 🎨</h4>
-                    <div class="color-preview" style="background-color: ${zodiacInfo.color}"></div>
-                </div>
-                
-                <div class="detail-item">
-                    <h4>الحجر الكريم 💎</h4>
-                    <p>${zodiacInfo.stone}</p>
+                <div class="description mt-4">
+                    <p class="lead">${zodiacInfo.description}</p>
                 </div>
             </div>
-            
-            <div class="zodiac-description mt-4">
-                <h4>نبذة عن برجك ✨</h4>
-                <p>${zodiacInfo.description}</p>
-            </div>
+            <button onclick="resetCalculator()" class="btn btn-primary mt-4">
+                <i class="bi bi-arrow-repeat"></i> حساب برج آخر
+            </button>
         </div>
     `;
     
-    resultDiv.innerHTML = resultHTML;
+    // تمرير إلى النتيجة
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+// إعادة تعيين الحاسبة
+function resetCalculator() {
+    document.getElementById('zodiacForm').reset();
+    document.getElementById('result').style.display = 'none';
+}
+
+// حساب البرج
+function calculateZodiacSign(day, month) {
+    const dates = {
+        'الحمل': [[21, 3], [19, 4]],
+        'الثور': [[20, 4], [20, 5]],
+        'الجوزاء': [[21, 5], [20, 6]],
+        'السرطان': [[21, 6], [22, 7]],
+        'الأسد': [[23, 7], [22, 8]],
+        'العذراء': [[23, 8], [22, 9]],
+        'الميزان': [[23, 9], [22, 10]],
+        'العقرب': [[23, 10], [21, 11]],
+        'القوس': [[22, 11], [21, 12]],
+        'الجدي': [[22, 12], [19, 1]],
+        'الدلو': [[20, 1], [18, 2]],
+        'الحوت': [[19, 2], [20, 3]]
+    };
+
+    for (let sign in dates) {
+        const [[startDay, startMonth], [endDay, endMonth]] = dates[sign];
+        if (
+            (month === startMonth && day >= startDay) ||
+            (month === endMonth && day <= endDay)
+        ) {
+            return sign;
+        }
+    }
     
-    // تأثير متحرك لإظهار النتيجة
-    setTimeout(() => {
-        resultDiv.style.display = 'block';
-        resultDiv.style.opacity = '0';
-        requestAnimationFrame(() => {
-            resultDiv.style.transition = 'opacity 0.5s ease-in-out';
-            resultDiv.style.opacity = '1';
-        });
-    }, 100);
+    return 'الجدي'; // للتواريخ المتبقية في نهاية ديسمبر
 }
 
 // عرض رسالة خطأ
@@ -315,7 +313,7 @@ function showError(message) {
     resultDiv.style.display = 'block';
     resultDiv.innerHTML = `
         <div class="alert alert-danger" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <i class="bi bi-exclamation-triangle-fill"></i>
             ${message}
         </div>
     `;
@@ -325,5 +323,4 @@ function showError(message) {
 document.addEventListener('DOMContentLoaded', function() {
     populateDateDropdowns();
     initializeZodiacCalculator();
-    addDateValidation();
 });

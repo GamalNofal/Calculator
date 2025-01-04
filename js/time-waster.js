@@ -1,87 +1,156 @@
 // قائمة الأسئلة
 const questions = [
     {
-        id: 'procrastination',
-        text: 'ما هو أسلوبك المفضل في المماطلة؟',
+        id: 'social',
+        text: 'كم ساعة تقضي على وسائل التواصل الاجتماعي يومياً؟',
         options: [
-            { value: 'social', text: '📱 تصفح وسائل التواصل الاجتماعي لساعات', hours: 4 },
-            { value: 'videos', text: '🎥 مشاهدة فيديوهات عشوائية', hours: 3 },
-            { value: 'food', text: '🍕 البحث عن وصفات طعام لن أطبخها أبداً', hours: 2 },
-            { value: 'cleaning', text: '🧹 تنظيف المنزل فجأة عندما يكون لدي عمل مهم', hours: 2 }
+            { value: '1', text: '🤓 أقل من ساعة' },
+            { value: '3', text: '📱 1-3 ساعات' },
+            { value: '5', text: '🤳 3-5 ساعات' },
+            { value: '7', text: '🧟‍♂️ أكثر من 5 ساعات' }
         ]
     },
     {
-        id: 'excuse',
-        text: 'ما هو عذرك المفضل للتأجيل؟',
+        id: 'morning',
+        text: 'ماذا تفعل أول ما تستيقظ؟',
         options: [
-            { value: 'tired', text: '😴 "أنا متعب جداً اليوم"', hours: 3 },
-            { value: 'tomorrow', text: '🌅 "غداً سأكون أكثر إنتاجية"', hours: 4 },
-            { value: 'mood', text: '🎭 "لست في المزاج المناسب"', hours: 2 },
-            { value: 'research', text: '🔍 "أحتاج لمزيد من البحث"', hours: 3 }
+            { value: '0', text: '🏃‍♂️ أتمرن أو أمارس الرياضة' },
+            { value: '1', text: '📝 أخطط ليومي' },
+            { value: '2', text: '📱 أتصفح هاتفي' },
+            { value: '3', text: '😴 أضغط زر الغفوة عدة مرات' }
+        ]
+    },
+    {
+        id: 'procrastination',
+        text: 'كيف تتعامل مع المهام المهمة؟',
+        options: [
+            { value: '0', text: '✅ أنجزها فوراً' },
+            { value: '1', text: '📅 أضعها في جدول' },
+            { value: '2', text: '😅 أؤجلها حتى آخر لحظة' },
+            { value: '3', text: '🙈 أتجاهلها وأتظاهر أنها غير موجودة' }
+        ]
+    },
+    {
+        id: 'weekend',
+        text: 'كيف تقضي عطلة نهاية الأسبوع عادةً؟',
+        options: [
+            { value: '1', text: '📚 أتعلم مهارات جديدة' },
+            { value: '2', text: '🎮 ألعب ألعاب الفيديو' },
+            { value: '3', text: '📺 أشاهد المسلسلات' },
+            { value: '4', text: '😴 أنام معظم اليوم' }
+        ]
+    },
+    {
+        id: 'notification',
+        text: 'كيف تتعامل مع الإشعارات؟',
+        options: [
+            { value: '0', text: '🔕 أغلقها تماماً' },
+            { value: '1', text: '⚡ أرد على المهم فقط' },
+            { value: '2', text: '👀 أتحقق منها كل فترة' },
+            { value: '3', text: '📱 أرد فوراً على كل شيء' }
         ]
     },
     {
         id: 'distraction',
-        text: 'ما الذي يشتت انتباهك بسهولة؟',
+        text: 'ما الذي يشتت انتباهك أكثر؟',
         options: [
-            { value: 'notifications', text: '📱 إشعارات الهاتف', hours: 3 },
-            { value: 'pets', text: '🐱 حيواني الأليف يريد الاهتمام', hours: 2 },
-            { value: 'snacks', text: '🍪 الرغبة في تناول وجبة خفيفة', hours: 1 },
-            { value: 'thoughts', text: '💭 أفكار عشوائية تماماً', hours: 2 }
-        ]
-    },
-    {
-        id: 'activity',
-        text: 'ما هو نشاطك المفضل لإضاعة الوقت؟',
-        options: [
-            { value: 'shopping', text: '🛒 التسوق الإلكتروني بدون شراء', hours: 3 },
-            { value: 'organizing', text: '📚 إعادة تنظيم أشياء مرتبة أصلاً', hours: 2 },
-            { value: 'planning', text: '📅 التخطيط للمستقبل بدل العمل', hours: 2 },
-            { value: 'daydreaming', text: '🌈 أحلام اليقظة', hours: 1 }
-        ]
-    },
-    {
-        id: 'productivity',
-        text: 'كيف تتظاهر بأنك مشغول؟',
-        options: [
-            { value: 'emails', text: '📧 فتح وإغلاق البريد الإلكتروني', hours: 1 },
-            { value: 'notes', text: '📝 كتابة قوائم مهام لن أنجزها', hours: 2 },
-            { value: 'meetings', text: '👥 حضور اجتماعات غير ضرورية', hours: 3 },
-            { value: 'research', text: '🔍 البحث عن نصائح للإنتاجية', hours: 2 }
+            { value: '1', text: '📱 الهاتف والإشعارات' },
+            { value: '2', text: '💭 أحلام اليقظة' },
+            { value: '3', text: '👥 الدردشة مع الآخرين' },
+            { value: '4', text: '🎵 الموسيقى والترفيه' }
         ]
     }
 ];
 
+// قائمة النشاطات البديلة
 const alternativeActivities = {
-    '4': [
-        { text: 'تعلم لغة جديدة 🗣️', value: '48 درس لغة' },
-        { text: 'قراءة كتاب 📚', value: '2 كتاب' },
-        { text: 'ممارسة الرياضة 🏃‍♂️', value: '24 تمرين' }
+    '30min': [
+        '🧘‍♂️ تأمل وتنفس عميق',
+        '📚 قراءة فصل من كتاب',
+        '💪 تمارين رياضية سريعة',
+        '✍️ كتابة يوميات',
+        '🎨 رسم أو تلوين للاسترخاء'
     ],
-    '3': [
-        { text: 'تعلم مهارة جديدة 🎯', value: '36 درس' },
-        { text: 'الطبخ 🍳', value: '18 وصفة' },
-        { text: 'التأمل 🧘‍♂️', value: '90 جلسة' }
+    '1hour': [
+        '🏃‍♂️ جري أو مشي سريع',
+        '📱 تعلم مهارة جديدة عبر الإنترنت',
+        '🧹 تنظيم وترتيب المكتب',
+        '🎯 إنجاز مهمة من قائمة المهام',
+        '🌱 العناية بالنباتات المنزلية'
     ],
-    '2': [
-        { text: 'العناية بالنباتات 🌱', value: '24 نبتة' },
-        { text: 'تعلم العزف 🎵', value: '24 مقطوعة' },
-        { text: 'الرسم 🎨', value: '12 لوحة' }
+    '2hours': [
+        '👨‍🍳 تعلم وصفة طبخ جديدة',
+        '🎨 ممارسة هواية إبداعية',
+        '📚 حضور درس تعليمي عبر الإنترنت',
+        '✍️ العمل على مشروع جانبي',
+        '🤝 التطوع في مجتمعك المحلي'
     ],
-    '1': [
-        { text: 'كتابة يوميات 📔', value: '30 مقال' },
-        { text: 'التصوير 📸', value: '60 صورة' },
-        { text: 'اليوجا 🧘‍♀️', value: '30 جلسة' }
+    '3hours': [
+        '💼 تطوير مهارات مهنية جديدة',
+        '🏃‍♂️ ممارسة رياضة كاملة',
+        '📝 التخطيط لمشروع شخصي',
+        '🎨 تعلم فن الخط العربي',
+        '🤖 تعلم أساسيات البرمجة'
+    ],
+    '5hours': [
+        '📚 إنهاء دورة تدريبية كاملة',
+        '💡 بدء مشروع خاص',
+        '🎯 تعلم لغة برمجة',
+        '✨ تطوير مهارة احترافية',
+        '📱 إنشاء محتوى مفيد'
     ]
 };
 
-// تهيئة الصفحة عند التحميل
+// نصائح لإدارة الوقت
+const timeManagementTips = [
+    {
+        title: 'تقنية بومودورو ⏰',
+        description: '25 دقيقة عمل، 5 دقائق راحة. كرر 4 مرات ثم خذ راحة طويلة.'
+    },
+    {
+        title: 'قانون الدقيقتين ⚡',
+        description: 'إذا كانت المهمة تستغرق أقل من دقيقتين، قم بها فوراً.'
+    },
+    {
+        title: 'مصفوفة إيزنهاور 📊',
+        description: 'صنف مهامك حسب الأهمية والإلحاح لتحديد الأولويات.'
+    },
+    {
+        title: 'قاعدة 80/20 🎯',
+        description: '80% من النتائج تأتي من 20% من الجهد. ركز على الأهم.'
+    },
+    {
+        title: 'تجنب تعدد المهام 🚫',
+        description: 'ركز على مهمة واحدة في كل مرة للحصول على أفضل النتائج.'
+    }
+];
+
+// حقائق مثيرة عن إضاعة الوقت
+const funFacts = [
+    {
+        fact: 'نقضي حوالي 6 سنوات من حياتنا على وسائل التواصل الاجتماعي! 😱',
+        icon: '📱'
+    },
+    {
+        fact: 'نضيع 76 ساعة سنوياً في البحث عن الأشياء الضائعة! 🔍',
+        icon: '⌚'
+    },
+    {
+        fact: 'نقضي 5 أشهر من حياتنا في الانتظار في الطوابير! ⏳',
+        icon: '🚶'
+    },
+    {
+        fact: 'نضغط على زر الغفوة بمعدل 3-4 مرات قبل الاستيقاظ! 😴',
+        icon: '⏰'
+    }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('timeWasterForm');
+    const questionContainer = document.getElementById('questionContainer');
     const resultDiv = document.getElementById('result');
     const progressBar = document.querySelector('.progress-bar');
-    const questionContainer = document.getElementById('questionContainer');
-
+    
     let currentQuestion = 0;
     const answers = {};
 
@@ -99,41 +168,169 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const optionsHTML = question.options
             .map(option => `
-                <div class="form-check custom-option mb-3">
+                <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" 
                            name="question" value="${option.value}" 
-                           id="${option.value}" required
-                           data-hours="${option.hours}">
+                           id="${option.value}" required>
                     <label class="form-check-label" for="${option.value}">
                         ${option.text}
                     </label>
                 </div>
             `).join('');
 
-        const questionHTML = `
-            <div class="question-slide">
+        questionContainer.innerHTML = `
+            <div class="question-slide" style="opacity: 0; transform: translateY(20px);">
                 <h3 class="question-title mb-4">${question.text}</h3>
-                <div class="options-container">
-                    ${optionsHTML}
-                </div>
+                ${optionsHTML}
                 <button type="submit" class="btn btn-primary w-100 mt-4">
-                    ${index === questions.length - 1 ? 'اكتشف نتيجتك! 🎯' : 'السؤال التالي ⏭️'}
+                    ${index === questions.length - 1 ? 'احسب الوقت المهدر! ⏰' : 'السؤال التالي ⏱️'}
                 </button>
             </div>
         `;
 
-        // Add fade out animation to current question
-        if (questionContainer.children.length > 0) {
-            questionContainer.children[0].style.animation = 'slideOut 0.3s ease-out';
-            setTimeout(() => {
-                questionContainer.innerHTML = questionHTML;
-                // Add fade in animation to new question
-                questionContainer.children[0].style.animation = 'slideIn 0.3s ease-out';
-            }, 300);
+        // إضافة تأثير حركي
+        setTimeout(() => {
+            const questionSlide = questionContainer.querySelector('.question-slide');
+            questionSlide.style.opacity = '1';
+            questionSlide.style.transform = 'translateY(0)';
+        }, 50);
+    }
+
+    function calculateWastedTime() {
+        let totalHours = 0;
+        
+        // حساب الساعات المهدرة
+        Object.values(answers).forEach(value => {
+            totalHours += parseInt(value);
+        });
+
+        // تحديد فئة الوقت المهدر
+        let timeCategory;
+        if (totalHours <= 2) {
+            timeCategory = '30min';
+        } else if (totalHours <= 4) {
+            timeCategory = '1hour';
+        } else if (totalHours <= 6) {
+            timeCategory = '2hours';
+        } else if (totalHours <= 8) {
+            timeCategory = '3hours';
         } else {
-            questionContainer.innerHTML = questionHTML;
-            questionContainer.children[0].style.animation = 'slideIn 0.3s ease-out';
+            timeCategory = '5hours';
         }
+
+        return {
+            hours: totalHours,
+            category: timeCategory
+        };
+    }
+
+    function getRandomItems(array, count) {
+        const shuffled = [...array].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    function showResults() {
+        const { hours, category } = calculateWastedTime();
+        const activities = getRandomItems(alternativeActivities[category], 3);
+        const tips = getRandomItems(timeManagementTips, 3);
+        const facts = getRandomItems(funFacts, 2);
+
+        const hoursPerWeek = hours * 7;
+        const hoursPerMonth = hours * 30;
+        const hoursPerYear = hours * 365;
+
+        resultDiv.innerHTML = `
+            <div class="result-box mt-4" style="opacity: 0; transform: translateY(20px);">
+                <div class="time-summary text-center mb-4">
+                    <h3 class="mb-3">تحليل الوقت المهدر</h3>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <div class="time-card">
+                                <h4>${hours}</h4>
+                                <p>ساعات يومياً</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="time-card">
+                                <h4>${hoursPerWeek}</h4>
+                                <p>ساعات أسبوعياً</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="time-card">
+                                <h4>${hoursPerMonth}</h4>
+                                <p>ساعات شهرياً</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="time-card">
+                                <h4>${hoursPerYear}</h4>
+                                <p>ساعات سنوياً</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alternative-activities mb-4">
+                    <h4 class="mb-3">
+                        <i class="bi bi-lightning-charge-fill me-2"></i>
+                        نشاطات مفيدة يمكنك القيام بها
+                    </h4>
+                    <div class="row g-3">
+                        ${activities.map(activity => `
+                            <div class="col-md-4">
+                                <div class="activity-card">
+                                    <p class="mb-0">${activity}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="tips-section mb-4">
+                    <h4 class="mb-3">
+                        <i class="bi bi-lightbulb-fill me-2"></i>
+                        نصائح لإدارة وقتك
+                    </h4>
+                    <div class="row g-3">
+                        ${tips.map(tip => `
+                            <div class="col-md-4">
+                                <div class="tip-card">
+                                    <h5>${tip.title}</h5>
+                                    <p class="mb-0">${tip.description}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="fun-facts mb-4">
+                    <h4 class="mb-3">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        حقائق مثيرة
+                    </h4>
+                    ${facts.map(fact => `
+                        <div class="fact-card mb-2">
+                            <span class="fact-icon">${fact.icon}</span>
+                            <p class="mb-0">${fact.fact}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <button onclick="location.reload()" class="btn btn-primary w-100 mt-4">
+                    حاول مرة أخرى! 🔄
+                </button>
+            </div>
+        `;
+
+        // عرض النتيجة مع تأثير حركي
+        resultDiv.style.display = 'block';
+        setTimeout(() => {
+            resultDiv.querySelector('.result-box').style.opacity = '1';
+            resultDiv.querySelector('.result-box').style.transform = 'translateY(0)';
+        }, 50);
+        
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
     }
 
     function handleAnswer(e) {
@@ -141,213 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedOption = document.querySelector('input[name="question"]:checked');
         if (!selectedOption) return;
 
-        answers[questions[currentQuestion].id] = {
-            value: selectedOption.value,
-            hours: parseInt(selectedOption.dataset.hours)
-        };
-
+        answers[questions[currentQuestion].id] = selectedOption.value;
         currentQuestion++;
         showQuestion(currentQuestion);
-    }
-
-    function calculateTimeWasted() {
-        const timeWastingProfiles = {
-            'محترف المماطلة الرقمية 📱': {
-                description: 'أنت خبير في تضييع الوقت على وسائل التواصل الاجتماعي والإنترنت!',
-                icon: '📱',
-                activities: [
-                    'تصفح لا نهائي لوسائل التواصل الاجتماعي',
-                    'مشاهدة فيديوهات عشوائية',
-                    'قراءة تعليقات لا نهاية لها'
-                ],
-                advice: [
-                    'استخدم تطبيقات تتبع وقت استخدام الهاتف',
-                    'حدد أوقاتاً محددة لتصفح السوشيال ميديا',
-                    'فعّل وضع عدم الإزعاج أثناء العمل'
-                ]
-            },
-            'فنان التسويف المبدع 🎨': {
-                description: 'لديك موهبة خاصة في ابتكار أعذار إبداعية وأنشطة بديلة!',
-                icon: '🎨',
-                activities: [
-                    'إعادة ترتيب الغرفة بدل إنهاء العمل',
-                    'البحث عن وصفات طعام معقدة',
-                    'التخطيط المفرط لأشياء بسيطة'
-                ],
-                advice: [
-                    'استخدم إبداعك في تحويل المهام المملة إلى تحديات ممتعة',
-                    'اكتب قائمة مهام واقعية وقصيرة',
-                    'كافئ نفسك بعد إنجاز كل مهمة'
-                ]
-            },
-            'خبير الأعذار المحترف 🎭': {
-                description: 'لديك قدرة خارقة على اختراع الأعذار المقنعة!',
-                icon: '🎭',
-                activities: [
-                    'اختراع أعذار معقدة',
-                    'إقناع نفسك بتأجيل المهام',
-                    'التظاهر بالانشغال الشديد'
-                ],
-                advice: [
-                    'ابدأ بمهام صغيرة وسهلة',
-                    'ضع موعداً نهائياً لكل مهمة',
-                    'شارك أهدافك مع صديق ليساعدك في المتابعة'
-                ]
-            },
-            'ملك التشتت المتعدد المهام 👑': {
-                description: 'أنت موهوب في بدء عدة مهام دون إنهاء أي منها!',
-                icon: '👑',
-                activities: [
-                    'فتح عدة مشاريع في نفس الوقت',
-                    'التنقل بين المهام بسرعة',
-                    'نسيان ما كنت تفعله أصلاً'
-                ],
-                advice: [
-                    'ركز على مهمة واحدة في كل مرة',
-                    'استخدم تقنية بومودورو (25 دقيقة عمل، 5 دقيقة راحة)',
-                    'أغلق كل التطبيقات غير الضرورية'
-                ]
-            }
-        };
-
-        // Calculate total hours wasted
-        const totalHours = Object.values(answers).reduce((sum, answer) => sum + answer.hours, 0);
-        
-        // Determine profile based on answers
-        let profile = '';
-        if (answers.procrastination.value === 'social' || answers.distraction.value === 'notifications') {
-            profile = 'محترف المماطلة الرقمية 📱';
-        } else if (answers.activity.value === 'organizing' || answers.excuse.value === 'mood') {
-            profile = 'فنان التسويف المبدع 🎨';
-        } else if (answers.excuse.value === 'tomorrow' || answers.productivity.value === 'notes') {
-            profile = 'خبير الأعذار المحترف 🎭';
-        } else {
-            profile = 'ملك التشتت المتعدد المهام 👑';
-        }
-
-        const profileData = timeWastingProfiles[profile];
-        
-        // Calculate yearly statistics
-        const yearlyHours = totalHours * 52; // 52 weeks in a year
-        const yearlyDays = Math.round(yearlyHours / 24);
-        const yearlySalary = yearlyHours * 50; // Assuming average hourly rate of 50 SAR
-
-        // Get alternative activities based on daily hours
-        const dailyHours = Math.round(totalHours / 7); // Average daily hours
-        const alternatives = alternativeActivities[dailyHours] || alternativeActivities['2'];
-
-        return {
-            ...profileData,
-            totalHours,
-            yearlyStats: {
-                hours: yearlyHours,
-                days: yearlyDays,
-                salary: yearlySalary
-            },
-            alternatives
-        };
-    }
-
-    function showResults() {
-        const result = calculateTimeWasted();
-        const { yearlyStats, alternatives } = result;
-
-        resultDiv.innerHTML = `
-            <div class="result-container">
-                <div class="profile-section text-center mb-5">
-                    <div class="profile-icon mb-3">${result.icon}</div>
-                    <h2 class="mb-3">${result.description}</h2>
-                    
-                    <div class="yearly-stats mt-4">
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="stat-card">
-                                    <div class="stat-icon">⏰</div>
-                                    <div class="stat-value">${yearlyStats.hours}</div>
-                                    <div class="stat-label">ساعة في السنة</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat-card">
-                                    <div class="stat-icon">📅</div>
-                                    <div class="stat-value">${yearlyStats.days}</div>
-                                    <div class="stat-label">يوم في السنة</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat-card">
-                                    <div class="stat-icon">💰</div>
-                                    <div class="stat-value">${yearlyStats.salary.toLocaleString()}</div>
-                                    <div class="stat-label">ريال مهدر</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="activities-section mb-5">
-                    <h3 class="text-center mb-4">أنشطتك المفضلة لإضاعة الوقت 🎯</h3>
-                    <div class="activities-list">
-                        ${result.activities.map(activity => `
-                            <div class="activity-item">
-                                <i class="bi bi-check2-circle"></i>
-                                <span>${activity}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <div class="alternatives-section mb-5">
-                    <h3 class="text-center mb-4">ماذا يمكنك أن تفعل بهذا الوقت؟ 🌟</h3>
-                    <div class="row g-4">
-                        ${alternatives.map(alt => `
-                            <div class="col-md-4">
-                                <div class="alternative-card">
-                                    <div class="alternative-text">${alt.text}</div>
-                                    <div class="alternative-value">${alt.value}</div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <div class="advice-section mb-5">
-                    <h3 class="text-center mb-4">نصائح لتحسين إدارة وقتك ✨</h3>
-                    <div class="advice-list">
-                        ${result.advice.map(tip => `
-                            <div class="advice-item">
-                                <i class="bi bi-lightbulb"></i>
-                                <span>${tip}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <div class="actions mt-4 text-center">
-                    <button onclick="location.reload()" class="btn btn-primary btn-lg">
-                        اختبر نفسك مرة أخرى! 🔄
-                    </button>
-                    <button onclick="shareResults()" class="btn btn-outline-primary btn-lg ms-2">
-                        شارك النتيجة! 🔗
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        resultDiv.style.display = 'block';
-        
-        // Animate stats cards
-        setTimeout(() => {
-            document.querySelectorAll('.stat-card').forEach((card, index) => {
-                card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.2}s forwards`;
-            });
-        }, 100);
-
-        resultDiv.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function shareResults() {
-        alert('قريباً! سيتم إضافة خاصية مشاركة النتائج في التحديث القادم 🔜');
     }
 
     // تهيئة الاختبار
