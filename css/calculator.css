@@ -65,6 +65,16 @@ body {
     text-align: center;
 }
 
+/* Category Logo Styles */
+.category-logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* Calculator Card Enhancements */
 .calculator-card {
     background-color: var(--card-bg);
@@ -86,18 +96,11 @@ body {
 }
 
 .card-header {
+    position: relative;
     padding: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: transparent;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.card-header:hover {
-    background-color: var(--hover-bg);
 }
 
 .card-header h3 {

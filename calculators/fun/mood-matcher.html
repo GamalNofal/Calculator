@@ -12,6 +12,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/no-theme-toggle.css">
+    <style>
+        .mood-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .answer-button {
+            transition: transform 0.2s;
+            margin: 10px;
+            width: 80%;
+        }
+        .answer-button:hover {
+            transform: scale(1.05);
+        }
+        .mood-emoji {
+            font-size: 4rem;
+            margin: 20px;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .mood-trend {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .badge {
+            margin: 5px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
@@ -111,51 +145,51 @@
             {
                 question: "كيف تصف طاقتك في هذه اللحظة؟",
                 answers: [
-                    "متحمس ومليء بالنشاط ⚡",
-                    "هادئ ومسترخي 🌿",
-                    "متعب وخامل 😴",
-                    "متوتر وقلق 😰",
-                    "معتدل ومتوازن 😊"
+                    { text: "متحمس ومليء بالنشاط ⚡", score: { energy: 10, social: 8, creativity: 5 } },
+                    { text: "هادئ ومسترخي 🌿", score: { peace: 10, reflection: 7 } },
+                    { text: "متعب وخامل 😴", score: { energy: -5, peace: 5 } },
+                    { text: "متوتر وقلق 😰", score: { peace: -5, energy: 5 } },
+                    { text: "معتدل ومتوازن 😊", score: { peace: 7, energy: 7 } }
                 ]
             },
             {
                 question: "ما هو أول شيء جذب انتباهك اليوم؟",
                 answers: [
-                    "السماء الزرقاء 🌤️",
-                    "فنجان القهوة ☕",
-                    "صوت الموسيقى 🎵",
-                    "ابتسامة شخص ما 😊",
-                    "شيء جميل في الطبيعة 🌸"
+                    { text: "السماء الزرقاء 🌤️", score: { peace: 8, reflection: 7 } },
+                    { text: "فنجان القهوة ☕", score: { energy: 6, creativity: 5 } },
+                    { text: "صوت الموسيقى 🎵", score: { creativity: 8, social: 6 } },
+                    { text: "ابتسامة شخص ما 😊", score: { social: 9, peace: 6 } },
+                    { text: "شيء جميل في الطبيعة 🌸", score: { reflection: 9, peace: 7 } }
                 ]
             },
             {
                 question: "ما هو نوع الموسيقى الذي تريد سماعه الآن؟",
                 answers: [
-                    "موسيقى حماسية 🎸",
-                    "موسيقى هادئة 🎹",
-                    "أغاني حزينة 🎻",
-                    "موسيقى راقصة 💃",
-                    "صمت تام 🤫"
+                    { text: "موسيقى حماسية 🎸", score: { energy: 9, social: 7 } },
+                    { text: "موسيقى هادئة 🎹", score: { peace: 9, reflection: 7 } },
+                    { text: "أغاني حزينة 🎻", score: { reflection: 8, creativity: 6 } },
+                    { text: "موسيقى راقصة 💃", score: { social: 9, energy: 8 } },
+                    { text: "صمت تام 🤫", score: { peace: 8, reflection: 9 } }
                 ]
             },
             {
                 question: "ما هو نشاطك المفضل في هذه اللحظة؟",
                 answers: [
-                    "الخروج مع الأصدقاء 👥",
-                    "القراءة في هدوء 📚",
-                    "ممارسة الرياضة 🏃‍♂️",
-                    "مشاهدة فيلم 🎬",
-                    "النوم 😴"
+                    { text: "الخروج مع الأصدقاء 👥", score: { social: 10, energy: 8 } },
+                    { text: "القراءة في هدوء 📚", score: { peace: 9, reflection: 8 } },
+                    { text: "ممارسة الرياضة 🏃‍♂️", score: { energy: 10, creativity: 5 } },
+                    { text: "مشاهدة فيلم 🎬", score: { creativity: 7, peace: 6 } },
+                    { text: "النوم 😴", score: { peace: 8, reflection: 5 } }
                 ]
             },
             {
                 question: "كيف تتخيل بقية يومك؟",
                 answers: [
-                    "مليء بالمغامرات 🎢",
-                    "هادئ ومريح 🛋️",
-                    "مشغول ومنتج 💼",
-                    "اجتماعي ومرح 🎉",
-                    "عادي وروتيني 📅"
+                    { text: "مليء بالمغامرات 🎢", score: { energy: 9, creativity: 8 } },
+                    { text: "هادئ ومريح 🛋️", score: { peace: 9, reflection: 7 } },
+                    { text: "مشغول ومنتج 💼", score: { energy: 8, creativity: 7 } },
+                    { text: "اجتماعي ومرح 🎉", score: { social: 10, energy: 7 } },
+                    { text: "عادي وروتيني 📅", score: { peace: 6, reflection: 5 } }
                 ]
             }
         ];
@@ -172,14 +206,15 @@
         function showQuestion() {
             const questionCard = document.getElementById('questionContainer');
             const questionText = document.createElement('h3');
+            questionText.className = 'mood-transition mb-4';
             questionText.textContent = questions[currentQuestion].question;
             questionCard.innerHTML = '';
             questionCard.appendChild(questionText);
             
             questions[currentQuestion].answers.forEach((answer, index) => {
                 const button = document.createElement('button');
-                button.className = 'btn btn-outline-primary';
-                button.textContent = answer;
+                button.className = 'btn btn-outline-primary answer-button mood-transition';
+                button.textContent = answer.text;
                 button.onclick = () => selectAnswer(answer);
                 questionCard.appendChild(button);
             });
@@ -191,44 +226,102 @@
         function selectAnswer(answer) {
             answers.push(answer);
             
-            setTimeout(() => {
-                if (currentQuestion < questions.length - 1) {
-                    currentQuestion++;
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                setTimeout(() => {
                     showQuestion();
-                } else {
+                }, 300);
+            } else {
+                setTimeout(() => {
                     showResult();
-                }
-            }, 300);
+                }, 300);
+            }
         }
 
         function analyzeMood() {
-            // Simplified mood analysis based on answers
-            const moods = {
-                energetic: "متحمس ومليء بالطاقة 🌟",
-                peaceful: "هادئ ومتوازن 🌿",
-                creative: "مبدع ومبتكر 🎨",
-                reflective: "متأمل ومفكر 🤔",
-                social: "اجتماعي ومرح 🎉"
+            const scores = {
+                energy: 0,
+                peace: 0,
+                creativity: 0,
+                reflection: 0,
+                social: 0
             };
-            
-            // Simple random selection for demo
-            const moodKeys = Object.keys(moods);
-            const randomMood = moodKeys[Math.floor(Math.random() * moodKeys.length)];
+
+            // Calculate total scores
+            answers.forEach(answer => {
+                Object.entries(answer.score).forEach(([trait, value]) => {
+                    scores[trait] += value;
+                });
+            });
+
+            // Find dominant traits
+            const maxScore = Math.max(...Object.values(scores));
+            const dominantTraits = Object.entries(scores)
+                .filter(([trait, score]) => score >= maxScore - 5)
+                .map(([trait]) => trait);
+
+            // Map traits to moods
+            const moodMap = {
+                energy: { mood: "متحمس ومليء بالطاقة", emoji: "🌟" },
+                peace: { mood: "هادئ ومتوازن", emoji: "🌿" },
+                creativity: { mood: "مبدع ومبتكر", emoji: "🎨" },
+                reflection: { mood: "متأمل ومفكر", emoji: "🤔" },
+                social: { mood: "اجتماعي ومرح", emoji: "🎉" }
+            };
+
+            // Select primary mood based on highest score
+            const primaryTrait = Object.entries(scores)
+                .reduce((a, b) => b[1] > a[1] ? b : a)[0];
+
+            const mood = moodMap[primaryTrait];
             return {
-                mood: moods[randomMood],
-                recommendations: getRecommendations(randomMood)
+                mood: `${mood.mood} ${mood.emoji}`,
+                scores: scores,
+                recommendations: getRecommendations(primaryTrait, dominantTraits)
             };
         }
 
-        function getRecommendations(mood) {
+        function getRecommendations(primaryTrait, traits) {
             const recommendations = {
-                energetic: "استغل طاقتك في ممارسة الرياضة أو بدء مشروع جديد! 🏃‍♂️",
-                peaceful: "استمتع بجلسة تأمل أو اقرأ كتاباً في مكان هادئ 📚",
-                creative: "جرب رسم شيء جديد أو اكتب قصة قصيرة 🎨",
-                reflective: "دوّن أفكارك في مذكراتك أو تأمل في الطبيعة 🌳",
-                social: "اتصل بصديق أو نظم لقاءً صغيراً مع الأحباب 👥"
+                energy: [
+                    "استغل طاقتك في ممارسة الرياضة! 🏃‍♂️",
+                    "ابدأ مشروعاً جديداً مثيراً! 🚀",
+                    "شارك في نشاط جماعي حماسي! 🎯"
+                ],
+                peace: [
+                    "استمتع بجلسة تأمل هادئة 🧘‍♂️",
+                    "اقرأ كتاباً في مكان هادئ 📚",
+                    "تنزه في الطبيعة 🌳"
+                ],
+                creativity: [
+                    "جرب رسم شيء جديد 🎨",
+                    "اكتب قصة قصيرة ✍️",
+                    "تعلم مهارة إبداعية جديدة 🎯"
+                ],
+                reflection: [
+                    "دوّن أفكارك في مذكراتك 📝",
+                    "تأمل في الطبيعة 🌅",
+                    "خطط لأهدافك المستقبلية 🎯"
+                ],
+                social: [
+                    "اتصل بصديق قديم 📱",
+                    "نظم لقاءً صغيراً مع الأحباب 👥",
+                    "شارك في نشاط اجتماعي 🎉"
+                ]
             };
-            return recommendations[mood] || "خذ وقتاً للاسترخاء واستمتع بيومك! ✨";
+
+            // Get primary recommendations
+            const primaryRecs = recommendations[primaryTrait];
+            
+            // Get one random recommendation for each additional trait
+            const additionalRecs = traits
+                .filter(trait => trait !== primaryTrait)
+                .map(trait => {
+                    const traitRecs = recommendations[trait];
+                    return traitRecs[Math.floor(Math.random() * traitRecs.length)];
+                });
+
+            return [...primaryRecs, ...additionalRecs].join('\n');
         }
 
         function showResult() {
@@ -236,11 +329,37 @@
             document.getElementById('moodForm').style.display = 'none';
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
+            
+            // Create mood visualization
+            const moodEmoji = result.mood.split(' ').pop();
+            
             resultDiv.innerHTML = `
-                <h2>مزاجك الحالي: ${result.mood}</h2>
-                <p>توصيات لتحسين مزاجك: ${result.recommendations}</p>
-                <button onclick="saveMood()" class="btn btn-success btn-lg">حفظ المزاج</button>
-                <button onclick="resetQuiz()" class="btn btn-outline-primary btn-lg ms-2">إعادة الاختبار</button>
+                <div class="mood-emoji">${moodEmoji}</div>
+                <h2 class="mood-transition">مزاجك الحالي: ${result.mood}</h2>
+                <div class="mood-trend">
+                    <h4>تحليل مزاجك:</h4>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-success" style="width: ${(result.scores.energy/50)*100}%" title="الطاقة">الطاقة</div>
+                    </div>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-info" style="width: ${(result.scores.peace/50)*100}%" title="الهدوء">الهدوء</div>
+                    </div>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-warning" style="width: ${(result.scores.creativity/50)*100}%" title="الإبداع">الإبداع</div>
+                    </div>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-primary" style="width: ${(result.scores.social/50)*100}%" title="الاجتماعية">الاجتماعية</div>
+                    </div>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-secondary" style="width: ${(result.scores.reflection/50)*100}%" title="التأمل">التأمل</div>
+                    </div>
+                </div>
+                <div class="recommendations mt-4">
+                    <h4>توصيات لتحسين مزاجك:</h4>
+                    <p>${result.recommendations.split('\n').map(rec => `<div class="alert alert-info">${rec}</div>`).join('')}</p>
+                </div>
+                <button onclick="saveMood()" class="btn btn-success btn-lg mood-transition">حفظ المزاج</button>
+                <button onclick="resetQuiz()" class="btn btn-outline-primary btn-lg ms-2 mood-transition">إعادة الاختبار</button>
             `;
             
             if (moodHistory.length > 0) {
@@ -276,12 +395,14 @@
             currentQuestion = 0;
             answers = [];
             document.getElementById('result').style.display = 'none';
+            document.getElementById('moodForm').style.display = 'none';
             document.getElementById('startScreen').style.display = 'block';
             updateProgress();
         }
 
         // Initialize
-        document.getElementById('startButton').addEventListener('click', function() {
+        document.getElementById('startButton').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default form submission
             document.getElementById('startScreen').style.display = 'none';
             showQuestion();
         });
@@ -291,6 +412,11 @@
             document.getElementById('moodHistory').style.display = 'block';
             updateMoodHistory();
         }
+
+        // Prevent form submission
+        document.getElementById('moodForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
