@@ -1,3 +1,16 @@
+// Debounce function for performance optimization
+const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
 // Calculator data structure
 const calculators = {
     math: [
@@ -38,49 +51,67 @@ const calculators = {
     ]
 };
 
-// Search functionality
+// Search functionality with performance optimization
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchCalculator');
     
     if (searchInput) {
-        searchInput.addEventListener('input', function(e) {
+        // Add accessibility attributes
+        searchInput.setAttribute('role', 'searchbox');
+        searchInput.setAttribute('aria-label', 'البحث عن الآلات الحاسبة');
+        
+        // Debounced search handler
+        const debouncedSearch = debounce(function(e) {
             const searchTerm = e.target.value.trim().toLowerCase();
-            
-            // Combine all calculators for searching
             const allCalculators = Object.values(calculators).flat();
-            
-            // Filter calculators based on search term
             const matchedCalculators = allCalculators.filter(calc => 
                 calc.name.toLowerCase().includes(searchTerm)
             );
-
-            // Update UI with search results (to be implemented)
             updateSearchResults(matchedCalculators);
-        });
+        }, 300);
+
+        searchInput.addEventListener('input', debouncedSearch);
     }
 });
 
-// Function to update search results
+// Function to update search results with accessibility
 function updateSearchResults(results) {
     const searchResultsContainer = document.createElement('div');
     searchResultsContainer.className = 'search-results';
+    searchResultsContainer.setAttribute('role', 'region');
+    searchResultsContainer.setAttribute('aria-live', 'polite');
     
     if (results.length > 0) {
+        const resultsList = document.createElement('ul');
+        resultsList.setAttribute('role', 'listbox');
+        
         results.forEach(result => {
-            const resultItem = document.createElement('a');
-            resultItem.href = result.url;
-            resultItem.className = 'search-result-item';
-            resultItem.innerHTML = `
-                <i class="bi bi-${result.icon}"></i>
+            const resultItem = document.createElement('li');
+            resultItem.setAttribute('role', 'option');
+            
+            const resultLink = document.createElement('a');
+            resultLink.href = result.url;
+            resultLink.className = 'search-result-item';
+            resultLink.setAttribute('aria-label', result.name);
+            
+            resultLink.innerHTML = `
+                <i class="bi bi-${result.icon}" aria-hidden="true"></i>
                 <span>${result.name}</span>
             `;
-            searchResultsContainer.appendChild(resultItem);
+            
+            resultItem.appendChild(resultLink);
+            resultsList.appendChild(resultItem);
         });
+        
+        searchResultsContainer.appendChild(resultsList);
     } else {
-        searchResultsContainer.innerHTML = '<div class="no-results">لا توجد نتائج</div>';
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.setAttribute('role', 'status');
+        noResults.textContent = 'لا توجد نتائج';
+        searchResultsContainer.appendChild(noResults);
     }
 
-    // Update the search results in the UI
     const existingResults = document.querySelector('.search-results');
     if (existingResults) {
         existingResults.remove();
@@ -89,6 +120,28 @@ function updateSearchResults(results) {
     const searchContainer = document.querySelector('.search-container');
     searchContainer.appendChild(searchResultsContainer);
 }
+
+// Optimized smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        
+        if (target) {
+            // Check if user prefers reduced motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            target.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                block: 'start'
+            });
+            
+            // Update URL without scrolling
+            history.pushState(null, '', `#${targetId}`);
+        }
+    });
+});
 
 // Add smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
