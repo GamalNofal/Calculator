@@ -7,17 +7,9 @@ function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     
-    // Update button icons
-    const lightIcon = themeToggle.querySelector('.theme-icon-light');
-    const darkIcon = themeToggle.querySelector('.theme-icon-dark');
-    
-    if (theme === 'dark') {
-        lightIcon.style.display = 'inline-block';
-        darkIcon.style.display = 'none';
-    } else {
-        lightIcon.style.display = 'none';
-        darkIcon.style.display = 'inline-block';
-    }
+    // Update moon icon
+    const moonIcon = themeToggle.querySelector('.bi-moon-fill');
+    moonIcon.style.opacity = theme === 'dark' ? '0.5' : '1';
 }
 
 // Initialize theme
@@ -51,8 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.createElement('button');
     themeToggle.id = 'theme-toggle';
     themeToggle.innerHTML = `
-        <i class="bi bi-moon-fill theme-icon-dark"></i>
-        <i class="bi bi-sun-fill theme-icon-light" style="display: none;"></i>
+        <i class="bi bi-moon-fill"></i>
     `;
     document.body.appendChild(themeToggle);
 

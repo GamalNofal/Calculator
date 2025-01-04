@@ -1248,3 +1248,114 @@ main, header, footer {
     background-color: rgba(25, 135, 84, 0.1);
     color: #198754;
 }
+
+/* Search Styles */
+#calculator-search {
+    position: relative;
+}
+
+#calculator-search input {
+    min-width: 250px;
+    border-radius: 20px;
+    padding-right: 40px;
+    transition: all 0.3s ease;
+}
+
+#calculator-search input:focus {
+    min-width: 300px;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+}
+
+#calculator-search button {
+    border-radius: 20px;
+}
+
+mark {
+    background-color: rgba(25, 135, 84, 0.2);
+    color: inherit;
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+}
+
+.calculator-card {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#no-results-message {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Camel Power Calculator Styles */
+.fun-fact {
+    background-color: rgba(25, 135, 84, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.fun-fact h3 {
+    color: #198754;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fun-fact i {
+    color: #ffc107;
+}
+
+.toast-message {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: rgba(25, 135, 84, 0.9);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.toast-message.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.share-container {
+    text-align: center;
+}
+
+.share-btn {
+    min-width: 150px;
+}
+
+.share-btn i {
+    margin-left: 0.5rem;
+}
+
+/* Animation for result display */
+.result-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
