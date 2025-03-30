@@ -210,8 +210,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayResults(score, details) {
-        // Hide loading
+        // Hide loading and show results
         loadingDiv.classList.add('d-none');
+        resultDiv.classList.remove('d-none');
         
         // Animate percentage counter
         let currentScore = 0;
@@ -239,80 +240,65 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display compatibility details with fade-in animation
         compatibilityDiv.innerHTML = details.map((detail, index) => `
             <div class="mb-4 detail-item" style="animation: fadeIn 0.5s ${index * 0.2}s forwards; opacity: 0;">
-                <h4 class="mb-2">
-                    <i class="bi bi-star-fill text-warning me-2"></i>
+                <h4 class="mb-2 text-end">
                     ${detail.category}
+                    <i class="bi bi-star-fill text-warning"></i>
                 </h4>
-                <div class="progress mb-2" style="height: 20px;">
+                <div class="progress mb-2" style="height: 20px; direction: ltr;">
                     <div class="progress-bar bg-danger" role="progressbar" 
-                         style="width: 0%">
+                         style="width: ${detail.score}%">
                         ${detail.score}%
                     </div>
                 </div>
                 <p class="text-muted">${detail.message}</p>
             </div>
         `).join('');
-        
-        // Animate progress bars
-        setTimeout(() => {
-            document.querySelectorAll('.progress-bar').forEach(bar => {
-                bar.style.transition = 'width 1s ease-in-out';
-                bar.style.width = bar.textContent;
-            });
-        }, 100);
+
+        // Add fun facts
+        const funFacts = getFunFacts(score, name1, name2);
+        if (funFacts.length > 0) {
+            compatibilityDiv.innerHTML += `
+                <div class="mt-4 fun-facts">
+                    <h4 class="mb-3 text-end">
+                        حقائق ممتعة
+                        <i class="bi bi-lightbulb-fill text-warning"></i>
+                    </h4>
+                    <ul class="list-unstyled">
+                        ${funFacts.map((fact, index) => `
+                            <li class="mb-2 text-end" style="animation: fadeIn 0.5s ${(index + details.length) * 0.2}s forwards; opacity: 0;">
+                                ${fact}
+                                <i class="bi bi-check-circle-fill text-success"></i>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+        }
 
         // Add relationship advice
         const advice = getRelationshipAdvice(score, details);
         compatibilityDiv.innerHTML += `
-            <div class="mt-4 p-3 bg-light rounded detail-item" style="animation: fadeIn 0.5s 0.8s forwards; opacity: 0;">
-                <h4 class="mb-3">
-                    <i class="bi bi-lightbulb-fill text-warning me-2"></i>
-                    نصائح للعلاقة
+            <div class="mt-4 advice" style="animation: fadeIn 0.5s ${(funFacts.length + details.length) * 0.2}s forwards; opacity: 0;">
+                <h4 class="mb-3 text-end">
+                    نصيحة للعلاقة
+                    <i class="bi bi-heart-fill text-danger"></i>
                 </h4>
-                <p class="mb-0">${advice}</p>
+                <p class="text-muted">${advice}</p>
             </div>
         `;
 
-        // Add fun facts section
-        const funFacts = getFunFacts(score, name1, name2);
-        compatibilityDiv.innerHTML += `
-            <div class="mt-4 p-3 bg-light rounded detail-item" style="animation: fadeIn 0.5s 0.9s forwards; opacity: 0;">
-                <h4 class="mb-3">
-                    <i class="bi bi-emoji-laughing-fill text-warning me-2"></i>
-                    حقائق مضحكة
-                </h4>
-                <ul class="list-unstyled mb-0">
-                    ${funFacts.map(fact => `
-                        <li class="mb-2">
-                            <i class="bi bi-stars text-primary me-2"></i>
-                            ${fact}
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `;
-
-        // Add share buttons
-        const shareText = `وجدت توافقاً بنسبة ${score}% مع شريك حياتي! اكتشف توافقك على حاسبة الحب والتوافق`;
-        compatibilityDiv.innerHTML += `
-            <div class="mt-4 text-center detail-item" style="animation: fadeIn 0.5s 1s forwards; opacity: 0;">
-                <h5 class="mb-3">شارك النتيجة</h5>
-                <div class="d-flex justify-content-center gap-3">
-                    <button onclick="shareResult('whatsapp', '${shareText}')" class="btn btn-success">
-                        <i class="bi bi-whatsapp fs-5"></i>
-                    </button>
-                    <button onclick="shareResult('facebook', '${shareText}')" class="btn btn-primary">
-                        <i class="bi bi-facebook fs-5"></i>
-                    </button>
-                    <button onclick="shareResult('twitter', '${shareText}')" class="btn btn-info text-white">
-                        <i class="bi bi-twitter-x fs-5"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        // Show results
-        resultDiv.classList.remove('d-none');
+        // Initialize sharing buttons after results are displayed
+        setTimeout(() => {
+            const shareButtons = document.querySelectorAll('.share-buttons button');
+            shareButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const platform = button.getAttribute('data-platform');
+                    const resultText = `${name1} و ${name2}: ${score}% - ${resultMessage.textContent}`;
+                    shareResult(platform, resultText);
+                });
+            });
+        }, duration);
     }
 
     function getFunFacts(score, name1, name2) {
@@ -354,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add random universal facts
         const universalFacts = [
             `هل تعلمون أن ${name1} و ${name2} يتنفسان نفس الهواء؟ عجيب! 😱`,
-            'العلماء يؤكدون أن الضحك معاً يقوي العلاقة! 😂',
+            'العلماء يؤكدون أن الضحك معاً يزيد نسبة التوافق بين الشريكين! 😂',
             'دراسات تؤكد أن المشي معاً يزيد نسبة التوافق بين الشريكين! 👫',
             'الأزواج السعداء يأكلون البيتزا معاً مرتين في الشهر على الأقل! 🍕',
             'الأشخاص المتوافقون يميلون إلى مشاهدة نفس المسلسلات! 📺'
@@ -384,23 +370,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function shareResult(platform, text) {
         const url = encodeURIComponent(window.location.href);
-        const encodedText = encodeURIComponent(text);
+        const encodedText = encodeURIComponent(`${text} - حاسبة الحب والتوافق`);
         let shareUrl = '';
         
         switch (platform) {
             case 'whatsapp':
-                shareUrl = `https://wa.me/?text=${encodedText}%20${url}`;
+                shareUrl = `https://api.whatsapp.com/send?text=${encodedText}%20${url}`;
                 break;
-            case 'facebook':
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodedText}`;
-                break;
-            case 'twitter':
-                shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${url}`;
+            case 'messenger':
+                shareUrl = `https://www.facebook.com/dialog/send?app_id=936529753100615&link=${url}&redirect_uri=${url}&quote=${encodedText}`;
                 break;
         }
         
         if (shareUrl) {
-            window.open(shareUrl, '_blank', 'width=600,height=400,location=0,menubar=0');
+            const width = 600;
+            const height = 400;
+            const left = (window.innerWidth - width) / 2;
+            const top = (window.innerHeight - height) / 2;
+            window.open(shareUrl, '_blank', `width=${width},height=${height},left=${left},top=${top},location=0,menubar=0`);
         }
     }
 

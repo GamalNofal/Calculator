@@ -155,6 +155,22 @@
         .btn i {
             font-size: 1.2rem;
         }
+        
+        .detail-item h4 i {
+            float: right;
+            margin-left: 0.5rem;
+        }
+        .detail-item p {
+            text-align: right;
+        }
+        .fun-facts ul li i {
+            float: right;
+            margin-left: 0.5rem;
+        }
+        .advice h4 i {
+            float: right;
+            margin-left: 0.5rem;
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
@@ -184,10 +200,6 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <button id="theme-toggle" class="btn btn-link">
-                            <i class="bi bi-moon-fill theme-icon-dark fs-5"></i>
-                            <i class="bi bi-sun-fill theme-icon-light fs-5" style="display: none;"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -254,8 +266,19 @@
                     <span id="percentage">0%</span>
                 </div>
                 <h3 id="resultMessage" class="mb-4"></h3>
-                <div id="compatibility" class="text-start">
+                <div id="compatibility" class="text-end">
                     <!-- Compatibility details will be inserted here -->
+                </div>
+                <div class="share-buttons mt-4">
+                    <p class="mb-3">شارك النتيجة مع أصدقائك:</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-outline-success btn-lg" data-platform="whatsapp">
+                            <i class="bi bi-whatsapp ms-2"></i> واتساب
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" data-platform="messenger">
+                            <i class="bi bi-messenger ms-2"></i> مسنجر
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
