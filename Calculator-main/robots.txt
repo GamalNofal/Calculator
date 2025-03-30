@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://calcairo.com/sitemap.xml
 
 # Prevent caching of calculator results
 Disallow: /calculators/*?*
