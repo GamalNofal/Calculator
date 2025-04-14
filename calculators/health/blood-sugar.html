@@ -5,13 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محول السكر في الدم - الآلات الحاسبة الشاملة</title>
     <meta name="description" content="حول بين وحدات قياس السكر في الدم (mg/dL و mmol/L) وتعرف على المستويات الطبيعية">
+    <meta name="google-adsense-account" content="ca-pub-5346000361286122">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5346000361286122" crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5346000361286122",
+            enable_page_level_ads: true
+        });
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/logo.css">
     <style>
+        .history-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
+        .history-item {
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-tabs .nav-link {
+            color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #0d6efd;
+            background-color: #e7f1ff;
+            border: none;
+        }
+
+        .input-group {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .input-group .form-control {
+            border: none;
+            padding: 12px 15px;
+        }
+
+        .input-group .input-group-text {
+            background-color: #f8f9fa;
+            border: none;
+            color: #6c757d;
+        }
+
+        .input-group .btn {
+            padding: 12px 25px;
+        }
+
         .range-indicator {
             height: 30px;
             border-radius: 15px;
@@ -70,6 +132,39 @@
 
         .quick-convert-item:last-child {
             border-bottom: none;
+        }
+
+        .advice-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .advice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .advice-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .advice-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0d6efd;
+        }
+
+        .advice-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
         }
 
         @keyframes fadeIn {
@@ -222,13 +317,55 @@
                     <div class="tab-content">
                         <!-- mg/dL to mmol/L -->
                         <div class="tab-pane fade show active" id="mgdl-to-mmol">
-                            <form id="mgdlForm" class="calculator-form">
-                                <div class="mb-4">
-                                    <label for="mgdlInput" class="form-label">القيمة بـ mg/dL</label>
-                                    <input type="number" class="form-control" id="mgdlInput" required min="0" max="1000" step="1">
+                            <!-- Calculator Ad -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5346000361286122"
+                         data-ad-slot="3750175768"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                    <div class="calculator-forms mb-4">
+                                <ul class="nav nav-tabs mb-3" id="conversionTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="glucose-tab" data-bs-toggle="tab" data-bs-target="#glucose" type="button" role="tab">تحويل السكر</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="a1c-tab" data-bs-toggle="tab" data-bs-target="#a1c" type="button" role="tab">تحويل A1C</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="conversionTabsContent">
+                                    <div class="tab-pane fade show active" id="glucose" role="tabpanel">
+                                        <form id="mgdlForm" class="mb-3">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="mgdlInput" placeholder="أدخل القيمة" step="1" min="0" required>
+                                                <span class="input-group-text">mg/dL</span>
+                                                <button class="btn btn-primary" type="submit">تحويل</button>
+                                            </div>
+                                        </form>
+
+                                        <form id="mmolForm">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="mmolInput" placeholder="أدخل القيمة" step="0.1" min="0" required>
+                                                <span class="input-group-text">mmol/L</span>
+                                                <button class="btn btn-primary" type="submit">تحويل</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="a1c" role="tabpanel">
+                                        <form id="a1cForm">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="a1cInput" placeholder="أدخل نسبة A1C" step="0.1" min="0" max="20" required>
+                                                <span class="input-group-text">%</span>
+                                                <button class="btn btn-primary" type="submit">تحويل</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">حول إلى mmol/L</button>
-                            </form>
+                            </div>
                         </div>
 
                         <!-- mmol/L to mg/dL -->
@@ -243,11 +380,109 @@
                         </div>
                     </div>
 
-                    <div id="result" class="result-container" style="display: none;">
-                        <h3 class="result-title">النتيجة</h3>
-                        <div class="result-box">
-                            <div class="conversion-result mb-3">
-                                <i class="bi bi-arrow-left-right text-primary"></i>
+                    <!-- Results Ad -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5346000361286122"
+                         data-ad-slot="3750175768"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                        <div class="tab-content">
+                            <!-- mg/dL to mmol/L -->
+                            <div class="tab-pane fade show active" id="mgdl-to-mmol">
+                                <!-- Calculator Ad -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5346000361286122"
+                             data-ad-slot="3750175768"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+
+                        <div class="calculator-forms mb-4">
+                                    <ul class="nav nav-tabs mb-3" id="conversionTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="glucose-tab" data-bs-toggle="tab" data-bs-target="#glucose" type="button" role="tab">تحويل السكر</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="a1c-tab" data-bs-toggle="tab" data-bs-target="#a1c" type="button" role="tab">تحويل A1C</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="conversionTabsContent">
+                                        <div class="tab-pane fade show active" id="glucose" role="tabpanel">
+                                            <form id="mgdlForm" class="mb-3">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="mgdlInput" placeholder="أدخل القيمة" step="1" min="0" required>
+                                                    <span class="input-group-text">mg/dL</span>
+                                                    <button class="btn btn-primary" type="submit">تحويل</button>
+                                                </div>
+                                            </form>
+
+                                            <form id="mmolForm">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="mmolInput" placeholder="أدخل القيمة" step="0.1" min="0" required>
+                                                    <span class="input-group-text">mmol/L</span>
+                                                    <button class="btn btn-primary" type="submit">تحويل</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="a1c" role="tabpanel">
+                                            <form id="a1cForm">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="a1cInput" placeholder="أدخل نسبة A1C" step="0.1" min="0" max="20" required>
+                                                    <span class="input-group-text">%</span>
+                                                    <button class="btn btn-primary" type="submit">تحويل</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- mmol/L to mg/dL -->
+                            <div class="tab-pane fade" id="mmol-to-mgdl">
+                                <form id="mmolForm" class="calculator-form">
+                                    <div class="mb-4">
+                                        <label for="mmolInput" class="form-label">القيمة بـ mmol/L</label>
+                                        <input type="number" class="form-control" id="mmolInput" required min="0" max="55" step="0.1">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">حول إلى mg/dL</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Results Ad -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5346000361286122"
+                             data-ad-slot="3750175768"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+
+                        <div id="result" class="result-container animate__animated animate__fadeIn" style="display: none;">
+                            <h3 class="result-title">النتيجة</h3>
+                            <div class="result-box">
+                                <div class="conversion-result mb-3">
+                                    <i class="bi bi-arrow-left-right text-primary"></i>
+                                </div>
+                                <div id="advice-section" class="advice-section mt-4">
+                                    <h4 class="mb-3">
+                                        <i class="bi bi-lightbulb text-warning"></i>
+                                        نصائح صحية
+                                    </h4>
+                                    <div class="row g-3" id="advice-cards">
+                                        <!-- Advice cards will be inserted here by JavaScript -->
+                                    </div>
+                                </div>
                                 <span id="conversionResult">0</span>
                             </div>
                             <div class="range-status mb-3">

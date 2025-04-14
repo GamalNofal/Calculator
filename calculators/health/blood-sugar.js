@@ -1,9 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize history array in localStorage if it doesn't exist
+    if (!localStorage.getItem('bloodSugarHistory')) {
+        localStorage.setItem('bloodSugarHistory', JSON.stringify([]));
+    }
     // Get DOM elements
     const mgdlForm = document.getElementById('mgdlForm');
     const mmolForm = document.getElementById('mmolForm');
+    const a1cForm = document.getElementById('a1cForm');
     const resultContainer = document.getElementById('result');
     const quickConversions = document.getElementById('quickConversions');
+    
+    // Create history container
+    const historyContainer = document.createElement('div');
+    historyContainer.className = 'history-container mt-4';
+    historyContainer.innerHTML = `
+        <h4 class="mb-3">آخر التحويلات</h4>
+        <div class="history-list"></div>
+    `;
+    document.querySelector('.calculator-container').appendChild(historyContainer);
+    updateHistory();
 
     // Blood sugar ranges in mg/dL
     const ranges = {
@@ -57,6 +72,78 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
+    // Advice data
+    const adviceData = {
+        low: [
+            {
+                title: 'تناول السكر السريع',
+                text: 'تناول 15 جرام من الكربوهيدرات سريعة المفعول مثل عصير التفاح',
+                icon: 'lightning-charge'
+            },
+            {
+                title: 'المراقبة',
+                text: 'قم بقياس السكر بعد 15 دقيقة من تناول السكر',
+                icon: 'clock'
+            },
+            {
+                title: 'الوقاية',
+                text: 'احمل دائماً سكر سريع المفعول معك',
+                icon: 'shield-check'
+            }
+        ],
+        normal: [
+            {
+                title: 'النشاط البدني',
+                text: 'مارس الرياضة بانتظام لمدة 30 دقيقة يومياً',
+                icon: 'bicycle'
+            },
+            {
+                title: 'التغذية',
+                text: 'تناول وجبات متوازنة تحتوي على الخضروات والبروتين',
+                icon: 'egg-fried'
+            },
+            {
+                title: 'المتابعة',
+                text: 'استمر في مراقبة مستوى السكر بشكل دوري',
+                icon: 'graph-up'
+            }
+        ],
+        high: [
+            {
+                title: 'استشارة الطبيب',
+                text: 'راجع طبيبك لتعديل خطة العلاج',
+                icon: 'hospital'
+            },
+            {
+                title: 'شرب الماء',
+                text: 'احرص على شرب كمية كافية من الماء',
+                icon: 'droplet'
+            },
+            {
+                title: 'الحركة',
+                text: 'قم بالمشي لمدة 15 دقيقة لتخفيض مستوى السكر',
+                icon: 'person-walking'
+            }
+        ],
+        prediabetes: [
+            {
+                title: 'تعديل النظام الغذائي',
+                text: 'قلل من تناول السكريات والنشويات المكررة',
+                icon: 'basket'
+            },
+            {
+                title: 'النشاط البدني',
+                text: 'مارس الرياضة لمدة 150 دقيقة أسبوعياً',
+                icon: 'heart-pulse'
+            },
+            {
+                title: 'الوزن',
+                text: 'اعمل على خسارة 5-7% من وزنك الحالي',
+                icon: 'graph-down-arrow'
+            }
+        ]
+    };
+
     // Food impact on blood sugar
     const foodImpact = {
         fast: [
@@ -88,6 +175,76 @@ document.addEventListener('DOMContentLoaded', function() {
         const mmol = parseFloat(document.getElementById('mmolInput').value);
         convertAndDisplay(mmol, 'mmol');
     });
+
+    // A1C form submission handler
+    a1cForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const a1c = parseFloat(document.getElementById('a1cInput').value);
+        const avgBloodSugar = a1cToBloodSugar(a1c);
+        displayA1cResult(a1c, avgBloodSugar);
+    });
+
+    function a1cToBloodSugar(a1c) {
+        // Formula: eAG (mg/dL) = (28.7 × A1C) - 46.7
+        return Math.round((28.7 * a1c) - 46.7);
+    }
+
+    function displayA1cResult(a1c, avgBloodSugar) {
+        const mmolValue = mgdlToMmol(avgBloodSugar);
+        resultContainer.style.display = 'block';
+        document.querySelector('.conversion-result').innerHTML = `
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i>
+                نسبة A1C ${a1c}% تعادل متوسط سكر:
+                <br>
+                <strong>${avgBloodSugar} mg/dL</strong>
+                <br>
+                <strong>${mmolValue.toFixed(1)} mmol/L</strong>
+            </div>
+        `;
+        updateRangeStatus(avgBloodSugar);
+        updateRangeIndicator(avgBloodSugar);
+        updateRecommendations(avgBloodSugar);
+        addToHistory({ value: a1c, unit: 'A1C', timestamp: new Date().toISOString() });
+    }
+
+    function addToHistory(entry) {
+        const history = JSON.parse(localStorage.getItem('bloodSugarHistory'));
+        history.unshift(entry);
+        if (history.length > 10) history.pop(); // Keep only last 10 entries
+        localStorage.setItem('bloodSugarHistory', JSON.stringify(history));
+        updateHistory();
+    }
+
+    function updateHistory() {
+        const history = JSON.parse(localStorage.getItem('bloodSugarHistory'));
+        const historyList = document.querySelector('.history-list');
+        historyList.innerHTML = history.map(entry => {
+            const date = new Date(entry.timestamp);
+            const timeStr = date.toLocaleTimeString('ar-EG');
+            const dateStr = date.toLocaleDateString('ar-EG');
+            return `
+                <div class="history-item mb-2 p-2 border rounded">
+                    <small class="text-muted">${dateStr} ${timeStr}</small>
+                    <br>
+                    <strong>${entry.value} ${entry.unit}</strong>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function getTimeBasedRecommendations() {
+        const hour = new Date().getHours();
+        if (hour >= 4 && hour < 10) {
+            return 'الصباح أفضل وقت لفحص السكر الصائم';
+        } else if (hour >= 10 && hour < 16) {
+            return 'تذكر قياس السكر بعد ساعتين من الوجبة';
+        } else if (hour >= 16 && hour < 22) {
+            return 'راقب مستوى السكر قبل النوم';
+        } else {
+            return 'تجنب الأكل في وقت متأخر من الليل';
+        }
+    }
 
     function convertAndDisplay(value, fromUnit) {
         let mgdlValue, mmolValue;
@@ -203,6 +360,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateRecommendations(mgdl) {
+        const timeRecommendation = getTimeBasedRecommendations();
+        
+        // Determine blood sugar status and get relevant advice
+        let adviceType = 'normal';
+        if (mgdl < 70) {
+            adviceType = 'low';
+        } else if (mgdl > 180) {
+            adviceType = 'high';
+        } else if (mgdl >= 100 && mgdl <= 125) {
+            adviceType = 'prediabetes';
+        }
+
+        // Get advice cards for the current status
+        const advice = adviceData[adviceType];
+        
+        // Update advice section
+        const adviceCards = document.getElementById('advice-cards');
+        adviceCards.innerHTML = advice.map(item => `
+            <div class="col-md-4">
+                <div class="advice-card">
+                    <i class="bi bi-${item.icon} advice-icon text-primary"></i>
+                    <h5 class="advice-title">${item.title}</h5>
+                    <p class="advice-text">${item.text}</p>
+                </div>
+            </div>
+        `).join('');
         const recommendationsList = document.getElementById('recommendations');
         recommendationsList.innerHTML = '';
 
