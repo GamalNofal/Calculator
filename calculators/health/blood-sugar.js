@@ -257,21 +257,39 @@ document.addEventListener('DOMContentLoaded', function() {
             mgdlValue = mmolToMgdl(value);
         }
 
-        // Display results with animation
-        const conversionResult = document.getElementById('conversionResult');
-        conversionResult.style.opacity = '0';
-        setTimeout(() => {
-            conversionResult.innerHTML = `
-                <span style="color: #198754;">${mgdlValue} mg/dL = ${mmolValue.toFixed(1)} mmol/L</span>
-            `;
-            conversionResult.style.opacity = '1';
-            conversionResult.style.transition = 'opacity 0.5s ease-in';
-        }, 200);
+        // Add to history
+        addToHistory({
+            value: fromUnit === 'mgdl' ? mgdlValue : mmolValue,
+            unit: fromUnit.toUpperCase(),
+            timestamp: new Date().toISOString()
+        });
 
-        // Update range status
+        // Show result container
+        resultContainer.style.display = 'block';
+
+        // Update conversion result
+        const conversionResult = document.querySelector('.conversion-result');
+        conversionResult.innerHTML = `
+            <div class="alert alert-info">
+                <div class="row align-items-center">
+                    <div class="col-6 text-center border-end">
+                        <small>mg/dL</small>
+                        <h3 class="mb-0">${mgdlValue}</h3>
+                    </div>
+                    <div class="col-6 text-center">
+                        <small>mmol/L</small>
+                        <h3 class="mb-0">${mmolValue.toFixed(1)}</h3>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Update status and recommendations
         updateRangeStatus(mgdlValue);
-
-        // Update range indicator with animation
+        updateRangeIndicator(mgdlValue);
+        updateRecommendations(mgdlValue);
+        updateQuickConversions(fromUnit);
+        updateFoodImpact(mgdlValue);
         updateRangeIndicator(mgdlValue);
 
         // Update quick conversions
@@ -377,17 +395,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update advice section
         const adviceCards = document.getElementById('advice-cards');
-        adviceCards.innerHTML = advice.map(item => `
-            <div class="col-md-4">
-                <div class="advice-card">
-                    <i class="bi bi-${item.icon} advice-icon text-primary"></i>
-                    <h5 class="advice-title">${item.title}</h5>
-                    <p class="advice-text">${item.text}</p>
+        if (adviceCards) {
+            adviceCards.innerHTML = advice.map(item => `
+                <div class="col-md-4">
+                    <div class="advice-card">
+                        <i class="bi bi-${item.icon} advice-icon text-primary"></i>
+                        <h5 class="advice-title">${item.title}</h5>
+                        <p class="advice-text">${item.text}</p>
+                    </div>
                 </div>
-            </div>
-        `).join('');
-        const recommendationsList = document.getElementById('recommendations');
-        recommendationsList.innerHTML = '';
+            `).join('');
+        }
+
+        // Update range status
+        const rangeStatus = document.querySelector('.range-status');
+        if (rangeStatus) {
+            let statusClass, statusText;
+            if (mgdl < 70) {
+                statusClass = 'danger';
+                statusText = 'انخفاض السكر في الدم';
+            } else if (mgdl <= 99) {
+                statusClass = 'success';
+                statusText = 'مستوى طبيعي';
+            } else if (mgdl <= 125) {
+                statusClass = 'warning';
+                statusText = 'ما قبل السكري';
+            } else {
+                statusClass = 'danger';
+                statusText = 'ارتفاع السكر في الدم';
+            }
+
+            rangeStatus.innerHTML = `
+                <div class="alert alert-${statusClass} mb-0">
+                    <i class="bi bi-info-circle me-2"></i>
+                    ${statusText}
+                    <div class="mt-2 small">${timeRecommendation}</div>
+                </div>
+            `;
+        }
+
 
         let category;
         if (mgdl < ranges.fasting.normal.min) {
