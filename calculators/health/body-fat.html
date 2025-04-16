@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/logo.css">
+    <link rel="stylesheet" href="body-fat.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
@@ -28,12 +29,12 @@
             <div class="container">
                 <a class="site-logo" href="../../index.html">
                     <div class="logo-icon">
-                        <i class="bi bi-calculator-fill"></i>
+                        <i class="bi bi-calculator-fill" aria-hidden="true"></i>
                     </div>
                     <span class="logo-text">الآلات الحاسبة الشاملة</span>
                 </a>
                 <div class="time-display">
-                    <i class="bi bi-clock"></i>
+                    <i class="bi bi-clock" aria-hidden="true"></i>
                     <span id="currentTime"></span>
                 </div>
             </div>
@@ -45,7 +46,7 @@
             <div class="col-md-8">
                 <div class="calculator-container">
                     <h1 class="calculator-title">
-                        <i class="bi bi-rulers text-primary"></i>
+                        <i class="bi bi-rulers text-primary" aria-hidden="true"></i>
                         حاسبة نسبة الدهون في الجسم
                     </h1>
                     
@@ -53,7 +54,7 @@
                         <p>احسب نسبة الدهون في جسمك باستخدام القياسات الجسدية. للحصول على نتائج أكثر دقة، استخدم شريط قياس وقم بأخذ القياسات في الصباح قبل الأكل.</p>
                     </div>
 
-                    <form id="bodyFatForm" class="calculator-form">
+                    <form id="bodyFatForm" class="calculator-form" role="form" aria-label="حاسبة نسبة الدهون في الجسم">
                         <div class="mb-4">
                             <label class="form-label">الجنس</label>
                             <div class="btn-group w-100" role="group">
@@ -102,11 +103,11 @@
                         <button type="submit" class="btn btn-primary w-100 mb-4">احسب نسبة الدهون</button>
                     </form>
 
-                    <div id="result" class="result-container" style="display: none;">
+                    <div id="result" class="result-container" style="display: none;" role="region" aria-live="polite">
                         <h3 class="result-title">النتيجة</h3>
                         <div class="result-box">
                             <div class="body-fat-percentage">
-                                <i class="bi bi-percent text-primary"></i>
+                                <i class="bi bi-percent text-primary" aria-hidden="true"></i>
                                 <span id="bodyFatPercentage">0</span>
                                 <span>% نسبة الدهون</span>
                             </div>

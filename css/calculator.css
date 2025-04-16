@@ -1,15 +1,17 @@
+/*
+========================
+ CALCULATOR-SPECIFIC STYLES
+========================
+*/
 :root {
     --primary-font: 'Cairo', sans-serif;
     --heading-color: #2c3e50;
-    --text-color: #495057;
     --primary-color: #198754;
     --bg-primary: #ffffff;
-    --text-primary: #2c3e50;
     --card-bg: #ffffff;
     --input-bg: #ffffff;
     --border-color: #dee2e6;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --success-color: #198754;
     --hover-bg: #f8f9fa;
     --theme-transition: none;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,6 +19,12 @@
     --icon-color: #198754;
     --icon-hover-color: #115c39;
 }
+
+/*
+========================
+ 1. Calculator Card Styles
+========================
+*/
 
 [data-bs-theme="dark"] {
     --bg-primary: #1a1a1a;
@@ -88,6 +96,11 @@ body {
     position: relative;
     will-change: transform;
     backface-visibility: hidden;
+}
+
+.calculator-card:focus-within, .calculator-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .calculator-card:hover {
@@ -1293,6 +1306,7 @@ body,
 .heirs-section input[type="number"]::-webkit-inner-spin-button,
 .heirs-section input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
+appearance: none;
     margin: 0;
 }
 

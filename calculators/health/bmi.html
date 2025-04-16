@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="bmi.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
@@ -59,7 +60,7 @@
             
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <form id="bmiForm" class="calculator-form">
+                    <form id="bmiForm" class="calculator-form" role="form" aria-label="حاسبة مؤشر كتلة الجسم">
                         <div class="form-group mb-4">
                             <label for="gender">الجنس</label>
                             <select id="gender" name="gender" class="form-select mb-3">
@@ -177,7 +178,7 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <div id="resultContainer" class="mt-4"></div>
+                    <div id="resultContainer" class="mt-4" role="region" aria-live="polite"></div>
                     
                     <!-- BMI Scale -->
                     <div class="bmi-scale mt-4">

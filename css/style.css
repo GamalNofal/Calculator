@@ -1,11 +1,14 @@
 /* Custom Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
-/* Enhanced Global Styles with Mobile-First Approach */
+/*
+========================
+ GLOBAL & LAYOUT STYLES
+========================
+*/
 :root {
     --bg-color: #ffffff;
     --text-color: #212529;
-    --card-bg: #ffffff;
     --border-color: rgba(0, 0, 0, 0.05);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --hover-bg: #f8f9fa;
@@ -15,6 +18,12 @@
     --transition-speed: 0.3s;
     --container-padding: 1rem;
 }
+
+/*
+========================
+ 1. Base & Reset
+========================
+*/
 
 /* Base Styles with Mobile-First Approach */
 html {
@@ -78,6 +87,17 @@ body {
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* Focus styles for accessibility */
+:focus {
+    outline: 2px solid var(--success-color);
+    outline-offset: 2px;
+}
+
+:focus-visible {
+    outline: 2px solid var(--success-color);
+    outline-offset: 2px;
 }
 
 img, video {

@@ -1,0 +1,49 @@
+/* Styles for BMI Calculator (bmi-calculator.html) - modular and maintainable */
+.calculator-container {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+.category-title {
+    font-size: 2rem;
+    color: #198754;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+.bmi-info {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 16px 24px;
+}
+.bmi-scale {
+    margin-top: 24px;
+    background: #f1f3f4;
+    border-radius: 8px;
+    padding: 12px 0;
+    text-align: center;
+}
+.bmi-scale .scale-bar {
+    height: 12px;
+    border-radius: 8px;
+    background: linear-gradient(to right, #198754 0%, #ffc107 50%, #dc3545 100%);
+    margin-bottom: 8px;
+}
+.bmi-scale .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+}
+.bmi-scale .bmi-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #198754;
+    border-radius: 50%;
+    top: -4px;
+    left: 0;
+    transform: translateX(-50%);
+    transition: left 0.3s;
+    border: 2px solid #fff;
+}

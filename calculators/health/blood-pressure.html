@@ -16,78 +16,8 @@
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/logo.css">
-    <style>
-        .bp-gauge {
-            width: 100%;
-            height: 30px;
-            border-radius: 15px;
-            background: linear-gradient(to right,
-                #198754 0%, #198754 20%,     /* Normal */
-                #ffc107 20%, #ffc107 40%,    /* Elevated */
-                #fd7e14 40%, #fd7e14 60%,    /* Stage 1 */
-                #dc3545 60%, #dc3545 80%,    /* Stage 2 */
-                #6f42c1 80%, #6f42c1 100%    /* Crisis */
-            );
-            position: relative;
-            margin: 20px 0;
-        }
+    <link rel="stylesheet" href="blood-pressure.css">
 
-        .bp-marker {
-            position: absolute;
-            width: 4px;
-            height: 40px;
-            background-color: #000;
-            top: -5px;
-            transform: translateX(-50%);
-        }
-
-        .bp-label {
-            position: absolute;
-            top: 40px;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-
-        .reading-history {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .reading-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .reading-item:last-child {
-            border-bottom: none;
-        }
-
-        .reading-value {
-            font-weight: bold;
-        }
-
-        .reading-category {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        .tips-section {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        .chart-container {
-            height: 300px;
-            margin: 20px 0;
-        }
-    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
     <script>
@@ -118,7 +48,7 @@
             <div class="col-md-8">
                 <div class="calculator-container">
                     <h1 class="calculator-title">
-                        <i class="bi bi-activity text-danger"></i>
+                        <i class="bi bi-activity text-danger" aria-hidden="true"></i>
                         محلل ضغط الدم
                     </h1>
                     
@@ -172,7 +102,7 @@
                         <h3 class="result-title">التحليل</h3>
                         <div class="result-box">
                             <div class="bp-reading mb-3">
-                                <i class="bi bi-heart-pulse text-danger"></i>
+                                <i class="bi bi-heart-pulse text-danger" aria-hidden="true"></i>
                                 <strong>القراءة:</strong>
                                 <span id="bpValue"></span>
                             </div>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/calculator.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/logo.css">
+    <link rel="stylesheet" href="blood-pressure-calc.css">
     <meta name="theme-color" content="#198754">
     <meta name="google-adsense-account" content="ca-pub-5346000361286122">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5346000361286122" crossorigin="anonymous"></script>
@@ -29,50 +30,7 @@
 
       gtag('config', 'G-EG5T75NQHF');
     </script>
-    <style>
-        .bp-gauge {
-            width: 100%;
-            height: 30px;
-            border-radius: 15px;
-            background: linear-gradient(to right,
-                #198754 0%, #198754 20%,     /* Normal */
-                #ffc107 20%, #ffc107 40%,    /* Elevated */
-                #fd7e14 40%, #fd7e14 60%,    /* Stage 1 */
-                #dc3545 60%, #dc3545 80%,    /* Stage 2 */
-                #6f42c1 80%, #6f42c1 100%    /* Crisis */
-            );
-            position: relative;
-            margin: 20px 0;
-        }
 
-        .bp-marker {
-            position: absolute;
-            width: 4px;
-            height: 40px;
-            background-color: #000;
-            top: -5px;
-            transform: translateX(-50%);
-        }
-
-        .reading-history {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .reading-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .reading-category {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -81,7 +39,7 @@
             <div class="container">
                 <a class="site-logo" href="../../index.html">
                     <div class="logo-icon">
-                        <i class="bi bi-calculator-fill"></i>
+                        <i class="bi bi-calculator-fill" aria-hidden="true"></i>
                     </div>
                     <span class="logo-text">الآلات الحاسبة الشاملة</span>
                 </a>
@@ -94,7 +52,7 @@
             <div class="col-md-8">
                 <div class="calculator-container">
                     <h1 class="calculator-title">
-                        <i class="bi bi-activity text-danger"></i>
+                        <i class="bi bi-activity text-danger" aria-hidden="true"></i>
                         حاسبة ضغط الدم
                     </h1>
                     

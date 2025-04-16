@@ -9,6 +9,77 @@ document.addEventListener('DOMContentLoaded', function() {
     const a1cForm = document.getElementById('a1cForm');
     const resultContainer = document.getElementById('result');
     const quickConversions = document.getElementById('quickConversions');
+
+    // Input validation and error handling
+    function showError(form, message) {
+        let error = form.querySelector('.form-error');
+        if (!error) {
+            error = document.createElement('div');
+            error.className = 'form-error text-danger mt-2';
+            form.appendChild(error);
+        }
+        error.textContent = message;
+        announce(message);
+    }
+    function clearError(form) {
+        let error = form.querySelector('.form-error');
+        if (error) error.remove();
+    }
+    // Attach validation to forms
+    if (mgdlForm) {
+        mgdlForm.addEventListener('submit', function(e) {
+            clearError(mgdlForm);
+            const input = mgdlForm.querySelector('input');
+            if (!input.value || isNaN(input.value) || Number(input.value) <= 0) {
+                e.preventDefault();
+                showError(mgdlForm, 'يرجى إدخال قيمة عددية صحيحة لمستوى السكر.');
+            } else {
+                const mgdl = parseFloat(input.value);
+                convertAndDisplay(mgdl, 'mgdl');
+            }
+        });
+    }
+    if (mmolForm) {
+        mmolForm.addEventListener('submit', function(e) {
+            clearError(mmolForm);
+            const input = mmolForm.querySelector('input');
+            if (!input.value || isNaN(input.value) || Number(input.value) <= 0) {
+                e.preventDefault();
+                showError(mmolForm, 'يرجى إدخال قيمة عددية صحيحة لمستوى السكر.');
+            } else {
+                const mmol = parseFloat(input.value);
+                convertAndDisplay(mmol, 'mmol');
+            }
+        });
+    }
+    if (a1cForm) {
+        a1cForm.addEventListener('submit', function(e) {
+            clearError(a1cForm);
+            const input = a1cForm.querySelector('input');
+            if (!input.value || isNaN(input.value) || Number(input.value) <= 0) {
+                e.preventDefault();
+                showError(a1cForm, 'يرجى إدخال قيمة عددية صحيحة للهيموغلوبين السكري.');
+            } else {
+                const a1c = parseFloat(input.value);
+                const avgBloodSugar = a1cToBloodSugar(a1c);
+                displayA1cResult(a1c, avgBloodSugar);
+            }
+        });
+    }
+
+    // Helper function for accessibility: Announce updates to screen readers
+    function announce(message) {
+        let liveRegion = document.getElementById('aria-live-region');
+        if (!liveRegion) {
+            liveRegion = document.createElement('div');
+            liveRegion.id = 'aria-live-region';
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('role', 'status');
+            liveRegion.className = 'visually-hidden';
+            document.body.appendChild(liveRegion);
+        }
+        liveRegion.textContent = message;
+    }
     
     // Create history container
     const historyContainer = document.createElement('div');
