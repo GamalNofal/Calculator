@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure Analyzer | Measure and Analyze Blood Pressure with Medical Recommendations</title>
+    <meta name="description" content="Blood pressure analyzer with comprehensive reading analysis and medical recommendations. Track your blood pressure, learn about normal ranges, and get personalized health advice.">
+    <meta name="keywords" content="blood pressure calculator, measure blood pressure, normal blood pressure, blood pressure analysis, hypertension, hypotension, health calculator">
+    <meta name="author" content="Comprehensive Calculators">
+    <meta property="og:title" content="Blood Pressure Analyzer | Measure and Analyze Blood Pressure with Medical Recommendations">
+    <meta property="og:description" content="Analyze your blood pressure readings and get comprehensive analysis with medical recommendations. Track your health easily.">
+    <meta property="og:type" content="website">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/calculator.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/logo.css">
+    <link rel="stylesheet" href="blood-pressure.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5T75NQHF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EG5T75NQHF');
+    </script>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm mb-4">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="site-logo" href="../../../english/index.html">
+                    <div class="logo-icon">
+                        <i class="bi bi-calculator-fill" aria-hidden="true"></i>
+                    </div>
+                    <span class="logo-text">Comprehensive Calculators</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="calculator-container">
+                    <h1 class="calculator-title">
+                        <i class="bi bi-activity text-danger" aria-hidden="true"></i>
+                        Blood Pressure Analyzer
+                    </h1>
+                    
+                    <div class="calculator-description">
+                        <p>Enter your blood pressure readings for a detailed analysis and personalized health recommendations.</p>
+                    </div>
+
+                    <form id="bpForm" class="calculator-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="systolic" class="form-label">Systolic (Upper)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="systolic" required min="70" max="250">
+                                    <span class="input-group-text">mmHg</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="diastolic" class="form-label">Diastolic (Lower)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="diastolic" required min="40" max="150">
+                                    <span class="input-group-text">mmHg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="pulseRate" class="form-label">Pulse Rate (optional)</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="pulseRate" min="40" max="200">
+                                <span class="input-group-text">bpm</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="readingTime" class="form-label">Measurement Time</label>
+                            <select class="form-select" id="readingTime">
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                                <option value="night">Night</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-calculator"></i>
+                            Analyze Reading
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../../js/blood-pressure.js"></script>
+</body>
+</html>
